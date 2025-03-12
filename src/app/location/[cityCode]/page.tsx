@@ -25,7 +25,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
           <div>
             <CalloutCard
               title="Information about the prediction"
-              message={`This is where Cohere summary will go! At the moment in ${forecast.nombre} is ${forecast.prediccion.dia[0].estadoCielo[0].descripcion}`}
+              message={`This is where Cohere summary will go! At the moment in ${forecast.nombre} is ${forecast.prediccion.dia[0].estadoCielo[0].descripcion} with ${forecast.prediccion.dia[0].temperatura[0].value}℃`}
             />
           </div>
         </div>
