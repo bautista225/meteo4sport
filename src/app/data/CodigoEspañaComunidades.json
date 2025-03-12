@@ -1,0 +1,78 @@
+[
+    {
+        "CODAUTO": "01",
+        "NOMBRE": "Andalucía"
+    },
+    {
+        "CODAUTO": "02",
+        "NOMBRE": "Aragón"
+    },
+    {
+        "CODAUTO": "03",
+        "NOMBRE": "Principado de Asturias"
+    },
+    {
+        "CODAUTO": "04",
+        "NOMBRE": "Illes Balears"
+    },
+    {
+        "CODAUTO": "05",
+        "NOMBRE": "Canarias"
+    },
+    {
+        "CODAUTO": "06",
+        "NOMBRE": "Cantabria"
+    },
+    {
+        "CODAUTO": "07",
+        "NOMBRE": "Castilla y León"
+    },
+    {
+        "CODAUTO": "08",
+        "NOMBRE": "Castilla - La Mancha"
+    },
+    {
+        "CODAUTO": "09",
+        "NOMBRE": "Cataluña"
+    },
+    {
+        "CODAUTO": "10",
+        "NOMBRE": "Comunitat Valenciana"
+    },
+    {
+        "CODAUTO": "11",
+        "NOMBRE": "Extremadura"
+    },
+    {
+        "CODAUTO": "12",
+        "NOMBRE": "Galicia"
+    },
+    {
+        "CODAUTO": "13",
+        "NOMBRE": "Comunidad de Madrid"
+    },
+    {
+        "CODAUTO": "14",
+        "NOMBRE": "Región de Murcia"
+    },
+    {
+        "CODAUTO": "15",
+        "NOMBRE": "Comunidad Foral de Navarra"
+    },
+    {
+        "CODAUTO": "16",
+        "NOMBRE": "País Vasco"
+    },
+    {
+        "CODAUTO": "17",
+        "NOMBRE": "La Rioja"
+    },
+    {
+        "CODAUTO": "18",
+        "NOMBRE": "Ceuta"
+    },
+    {
+        "CODAUTO": "19",
+        "NOMBRE": "Melilla"
+    }
+]
