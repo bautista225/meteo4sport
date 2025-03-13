@@ -17,7 +17,6 @@ const regionOptions = getRegions().map((region) => ({
 }));
 
 const getCityOptions = (regionCode?: string) => {
-  console.log({ regionCode });
   if (regionCode)
     return getCitiesByRegion(regionCode).map((city) => ({
       value: { ...city },
