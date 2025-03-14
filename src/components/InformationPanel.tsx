@@ -5,39 +5,24 @@ import { Divider } from "./Divider";
 import { getWeatherIconUrl } from "@/services/AemetService";
 import Image from "next/image";
 import { SunriseIcon, SunsetIcon } from "lucide-react";
-import { PrediccionMunicipioProbabilidadPorDias } from "@/types/AEMET/CityDailyForecast";
+import { WeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
-  hourlyForecast: PrediccionMunicipioProbabilidadPorHoras;
-  dailyForecast: PrediccionMunicipioProbabilidadPorDias;
+  weatherForecast: WeatherForecast;
 };
 
-export default function InformationPanel({
-  hourlyForecast,
-  dailyForecast,
-}: Props) {
-  const currentDayForecast = hourlyForecast.prediccion.dia[0];
+export default function InformationPanel({ weatherForecast }: Props) {
+  const { weatherDailyData, weatherHourlyData } = weatherForecast;
 
-  const currentHour = new Date().toLocaleString("en-GB", {
-    hour: "numeric",
-    hour12: false,
+  console.log({
+    data1: weatherDailyData.currentWeather,
+    data2: weatherHourlyData.currentWeather,
   });
-
-  const currentHourForecast = {
-    temperature: currentDayForecast.temperatura.filter(
-      ({ periodo }) => Number(periodo) === Number(currentHour)
-    ),
-    maxTemperature: dailyForecast.prediccion.dia[0].temperatura.maxima,
-    minTemperature: dailyForecast.prediccion.dia[0].temperatura.minima,
-    weather: currentDayForecast.estadoCielo.filter(
-      ({ periodo }) => Number(periodo) === Number(currentHour)
-    ),
-  };
 
   return (
     <div className="border-b-[1px] md:border-b-0 md:border-r-[1px] border-gray-200 dark:border-gray-800 p-10">
       <div className="pb-5">
-        <Title className="text-4xl">{hourlyForecast.nombre}</Title>
+        <Title className="text-4xl">{weatherDailyData.city}</Title>
       </div>
 
       <CityPicker />
@@ -73,21 +58,22 @@ export default function InformationPanel({
       <div className="flex items-center justify-between">
         <div>
           <Image
-            src={getWeatherIconUrl(currentHourForecast.weather[0].value)}
+            src={getWeatherIconUrl(
+              weatherHourlyData.currentWeather.weatherConditionCode || ""
+            )}
             alt={
-              currentHourForecast.weather.length
-                ? currentHourForecast.weather[0].descripcion
-                : "NA"
+              weatherHourlyData.currentWeather.weatherConditionDescription ||
+              "NA"
             }
             width={75}
             height={75}
           />
           <div className="flex items-center justify-between gap-x-10">
             <p className="text-6xl font-semibold">
-              {currentHourForecast.temperature[0].value}ºC
+              {weatherHourlyData.currentWeather.temperature}ºC
             </p>
             <p className="text-right font-extralight text-lg">
-              {currentHourForecast.weather[0].descripcion}
+              {weatherHourlyData.currentWeather.weatherConditionDescription}
             </p>
           </div>
         </div>
@@ -104,7 +90,9 @@ export default function InformationPanel({
               <SunriseIcon color="yellow" />
             </p>
             <p>Sunrise</p>
-            <div className="ml-auto">{currentDayForecast.orto}</div>
+            <div className="ml-auto">
+              {weatherHourlyData.currentWeather.sunrise}
+            </div>
           </div>
         </div>
 
@@ -118,7 +106,9 @@ export default function InformationPanel({
               <SunsetIcon color="orange" />
             </p>
             <p>Sunset</p>
-            <div className="ml-auto">{currentDayForecast.ocaso}</div>
+            <div className="ml-auto">
+              {weatherHourlyData.currentWeather.sunset}
+            </div>
           </div>
         </div>
       </div>

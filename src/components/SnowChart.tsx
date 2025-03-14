@@ -9,7 +9,7 @@ type Props = {
   forecast: PrediccionMunicipioProbabilidadPorHoras;
 };
 
-export default function RainChart({ forecast }: Props) {
+export default function SnowChart({ forecast }: Props) {
   const currentDate = forecast.elaborado.split("T")[0];
   const hourly = forecast.prediccion.dia[0].temperatura.map(({ periodo }) => {
     const forecastStringDateTime = `${currentDate}T${periodo}:00:00`;
@@ -21,38 +21,32 @@ export default function RainChart({ forecast }: Props) {
   });
 
   const data = hourly.map((hour) => {
-    const stormProb = forecast.prediccion.dia[0].probTormenta.filter(
+    const snowProb = forecast.prediccion.dia[0].probNieve.filter(
       ({ periodo }) =>
         Number(periodo.substring(0, 2)) <= Number(hour.split(":")[0]) &&
         Number(periodo.substring(2, 4)) >= Number(hour.split(":")[0])
     );
-    const rainProb = forecast.prediccion.dia[0].probPrecipitacion.filter(
-      ({ periodo }) =>
-        Number(periodo.substring(0, 2)) <= Number(hour.split(":")[0]) &&
-        Number(periodo.substring(2, 4)) >= Number(hour.split(":")[0])
-    );
-    const rain = forecast.prediccion.dia[0].precipitacion.filter(
+    const snow = forecast.prediccion.dia[0].nieve.filter(
       ({ periodo }) => periodo === hour.split(":")[0]
     );
     return {
       time: hour,
-      "Storm Probability (%)": stormProb.length ? stormProb[0].value : 0,
-      "Rain Probability (%)": rainProb.length ? rainProb[0].value : 0,
-      "Rain (mm)": rain.length ? rain[0].value : 0,
+      "Snow Probability (%)": snowProb.length ? snowProb[0].value : 0,
+      "Snow (mm)": snow.length ? snow[0].value : 0,
     };
   });
 
   return (
     <Card>
-      <Text>Chances of rain</Text>
+      <Text>Chances of snow</Text>
       <ComboChart
         className="mt-6"
         data={data}
         index="time"
         enableBiaxial
         barSeries={{
-          categories: ["Rain (mm)"],
-          colors: ["blue"],
+          categories: ["Snow (mm)"],
+          colors: ["pink"],
           maxValue: forecast.prediccion.dia[0].precipitacion.filter(
             ({ value }) => Number(value) > 6
           ).length
@@ -64,8 +58,8 @@ export default function RainChart({ forecast }: Props) {
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}
         lineSeries={{
-          categories: ["Rain Probability (%)", "Storm Probability (%)"],
-          colors: ["cyan", "gray"],
+          categories: ["Snow Probability (%)"],
+          colors: ["violet"],
           maxValue: 100,
           valueFormatter: (number: number) =>
             `${Intl.NumberFormat().format(number).toString()}%`,

@@ -39,6 +39,9 @@ export default function HumidityChart({ forecast }: Props) {
         index="time"
         showLegend
         categories={["Humidity (%)"]}
+        valueFormatter={(number: number) =>
+          `${Intl.NumberFormat().format(number).toString()}%`
+        }
         colors={["emerald"]}
         minValue={0}
       />
