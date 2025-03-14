@@ -1,46 +1,25 @@
 "use client";
 
-import { PrediccionMunicipioProbabilidadPorHoras } from "@/types/AEMET/CityHourlyForecast";
 import { Card } from "./Card";
 import Text from "./Text";
 import { ComboChart } from "./ComboChart";
+import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
-  forecast: PrediccionMunicipioProbabilidadPorHoras;
+  forecasts: HourWeatherForecast[];
 };
 
-export default function RainChart({ forecast }: Props) {
-  const currentDate = forecast.elaborado.split("T")[0];
-  const hourly = forecast.prediccion.dia[0].temperatura.map(({ periodo }) => {
-    const forecastStringDateTime = `${currentDate}T${periodo}:00:00`;
-    return new Date(forecastStringDateTime).toLocaleString("en-US", {
-      hour: "numeric",
-      hour12: false,
-      minute: "numeric",
-    });
-  });
-
-  const data = hourly.map((hour) => {
-    const stormProb = forecast.prediccion.dia[0].probTormenta.filter(
-      ({ periodo }) =>
-        Number(periodo.substring(0, 2)) <= Number(hour.split(":")[0]) &&
-        Number(periodo.substring(2, 4)) >= Number(hour.split(":")[0])
-    );
-    const rainProb = forecast.prediccion.dia[0].probPrecipitacion.filter(
-      ({ periodo }) =>
-        Number(periodo.substring(0, 2)) <= Number(hour.split(":")[0]) &&
-        Number(periodo.substring(2, 4)) >= Number(hour.split(":")[0])
-    );
-    const rain = forecast.prediccion.dia[0].precipitacion.filter(
-      ({ periodo }) => periodo === hour.split(":")[0]
-    );
-    return {
-      time: hour,
-      "Storm Probability (%)": stormProb.length ? stormProb[0].value : 0,
-      "Rain Probability (%)": rainProb.length ? rainProb[0].value : 0,
-      "Rain (mm)": rain.length ? rain[0].value : 0,
-    };
-  });
+export default function RainChart({ forecasts }: Props) {
+  const data = forecasts
+    .map((forecast) => {
+      return {
+        time: forecast.dateTime.split("T")[1].split(":")[0],
+        "Storm Probability (%)": Number(forecast.stormProbability),
+        "Rain Probability (%)": Number(forecast.rainProbability),
+        "Rain (mm)": Number(forecast.rain),
+      };
+    })
+    .slice(0, 24);
 
   return (
     <Card>
@@ -53,13 +32,10 @@ export default function RainChart({ forecast }: Props) {
         barSeries={{
           categories: ["Rain (mm)"],
           colors: ["blue"],
-          maxValue: forecast.prediccion.dia[0].precipitacion.filter(
-            ({ value }) => Number(value) > 6
-          ).length
-            ? forecast.prediccion.dia[0].precipitacion.filter(
-                ({ value }) => Number(value) > 6
-              ).length
-            : 6,
+          maxValue: forecasts.reduce(
+            (max, { rain }) => Math.max(max, Number(rain)),
+            6
+          ),
           valueFormatter: (number: number) =>
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}

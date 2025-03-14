@@ -1,32 +1,19 @@
 "use client";
 
-import { PrediccionMunicipioProbabilidadPorHoras } from "@/types/AEMET/CityHourlyForecast";
 import { Card } from "./Card";
 import { AreaChart } from "./AreaChart";
 import Text from "./Text";
+import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
-  forecast: PrediccionMunicipioProbabilidadPorHoras;
+  forecasts: HourWeatherForecast[];
 };
 
-export default function HumidityChart({ forecast }: Props) {
-  const currentDate = forecast.elaborado.split("T")[0];
-  const hourly = forecast.prediccion.dia[0].temperatura.map(({ periodo }) => {
-    const forecastStringDateTime = `${currentDate}T${periodo}:00:00`;
-    return new Date(forecastStringDateTime).toLocaleString("en-US", {
-      hour: "numeric",
-      hour12: false,
-      minute: "numeric",
-    });
-  });
-
-  const data = hourly.map((hour) => {
-    const humidity = forecast.prediccion.dia[0].humedadRelativa.filter(
-      ({ periodo }) => periodo === hour.split(":")[0]
-    );
+export default function HumidityChart({ forecasts }: Props) {
+  const data = forecasts.map((forecast) => {
     return {
-      time: hour,
-      "Humidity (%)": humidity.length ? humidity[0].value : 0,
+      time: forecast.dateTime.split("T")[1].split(":")[0],
+      "Humidity (%)": Number(forecast.relativeHumidity),
     };
   });
 

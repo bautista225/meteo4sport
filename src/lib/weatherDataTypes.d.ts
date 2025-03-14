@@ -66,8 +66,8 @@ export interface HourWeatherForecast {
   rain?: string;
   rainProbability?: string;
   stormProbability?: string;
-  snowFall?: string;
-  snowFallProbability?: string;
+  snowfall?: string;
+  snowfallProbability?: string;
   temperature?: string;
   feelsLike?: string;
   relativeHumidity?: string;

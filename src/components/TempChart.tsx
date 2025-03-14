@@ -10,13 +10,15 @@ type Props = {
 };
 
 export default function TempChart({ forecasts }: Props) {
-  const data = forecasts.map((forecast) => {
-    return {
-      time: forecast.dateTime.split("T")[1].split(":"),
-      "Temperature (ºC)": forecast.temperature,
-      "Feels like (ºC)": forecast.feelsLike,
-    };
-  });
+  const data = forecasts
+    .map((forecast) => {
+      return {
+        time: forecast.dateTime.split("T")[1].split(":")[0],
+        "Temperature (ºC)": Number(forecast.temperature),
+        "Feels like (ºC)": Number(forecast.feelsLike),
+      };
+    })
+    .slice(0, 24);
 
   return (
     <Card>
@@ -31,7 +33,6 @@ export default function TempChart({ forecasts }: Props) {
           `${Intl.NumberFormat().format(number).toString()}°C`
         }
         colors={["lime", "amber"]}
-        minValue={0}
       />
     </Card>
   );

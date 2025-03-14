@@ -82,9 +82,9 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
             <TempChart forecasts={weatherHourlyData.forecasts} />
-            {/* <RainChart forecast={weatherHourlyData.forecasts} />
-            <HumidityChart forecast={weatherHourlyData.forecasts} />
-            <SnowChart forecast={weatherHourlyData.forecasts} /> */}
+            <RainChart forecasts={weatherHourlyData.forecasts} />
+            <HumidityChart forecasts={weatherHourlyData.forecasts} />
+            <SnowChart forecasts={weatherHourlyData.forecasts} />
           </div>
         </div>
       </div>

@@ -13,8 +13,8 @@ import {
 
 const getCurrentDateTimeString = () => {
   const currentYear = new Date().getFullYear().toString();
-  const currentMonth = new Date().getMonth().toString().padStart(2, "0");
-  const currentDay = new Date().getDay().toString().padStart(2, "0");
+  const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, "0");
+  const currentDay = new Date().getDate().toString().padStart(2, "0");
   const currentTime = new Date().toLocaleString("en-GB", {
     hour: "2-digit",
     hour12: false,
@@ -93,8 +93,8 @@ const mergeHourlyData = (availableHours: string[], day: Dum) => {
       hour
     );
 
-    const snowFall = findPeriodInWeatherData(day.nieve, hour);
-    const snowFallProb = findPeriodInWeatherProbabilityData(
+    const snowfall = findPeriodInWeatherData(day.nieve, hour);
+    const snowfallProb = findPeriodInWeatherProbabilityData(
       day.probNieve,
       hour
     );
@@ -114,8 +114,8 @@ const mergeHourlyData = (availableHours: string[], day: Dum) => {
       rain: rain?.value || null,
       rainProbability: rainProb?.value || null,
       stormProbability: stormProb?.value || null,
-      snowFall: snowFall?.value || null,
-      snowFallProbability: snowFallProb?.value || null,
+      snowfall: snowfall?.value || null,
+      snowfallProbability: snowfallProb?.value || null,
       temperature: temperature?.value || null,
       feelsLike: feelsLike?.value || null,
       relativeHumidity: relativeHumidity?.value || null,
@@ -173,6 +173,8 @@ export const transformAemetToWeatherHourlyData = (
     processedHourlyForecast,
     currentDateTime
   );
+
+  console.log(currentDateTime);
 
   return {
     city: hourlyForecast.nombre,

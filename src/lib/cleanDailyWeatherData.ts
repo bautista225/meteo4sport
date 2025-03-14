@@ -6,8 +6,8 @@ import { DayWeatherForecast } from "./weatherDataTypes";
 
 const getCurrentDateTimeString = () => {
   const currentYear = new Date().getFullYear().toString();
-  const currentMonth = new Date().getMonth().toString().padStart(2, "0");
-  const currentDay = new Date().getDay().toString().padStart(2, "0");
+  const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, "0");
+  const currentDay = new Date().getDate().toString().padStart(2, "0");
   const currentTime = new Date().toLocaleString("en-GB", {
     hour: "2-digit",
     hour12: false,

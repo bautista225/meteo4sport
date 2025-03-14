@@ -1,44 +1,26 @@
 "use client";
 
-import { PrediccionMunicipioProbabilidadPorHoras } from "@/types/AEMET/CityHourlyForecast";
 import { Card } from "./Card";
 import Text from "./Text";
 import { ComboChart } from "./ComboChart";
+import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
-  forecast: PrediccionMunicipioProbabilidadPorHoras;
+  forecasts: HourWeatherForecast[];
 };
 
-export default function SnowChart({ forecast }: Props) {
-  const currentDate = forecast.elaborado.split("T")[0];
-  const hourly = forecast.prediccion.dia[0].temperatura.map(({ periodo }) => {
-    const forecastStringDateTime = `${currentDate}T${periodo}:00:00`;
-    return new Date(forecastStringDateTime).toLocaleString("en-US", {
-      hour: "numeric",
-      hour12: false,
-      minute: "numeric",
-    });
-  });
-
-  const data = hourly.map((hour) => {
-    const snowProb = forecast.prediccion.dia[0].probNieve.filter(
-      ({ periodo }) =>
-        Number(periodo.substring(0, 2)) <= Number(hour.split(":")[0]) &&
-        Number(periodo.substring(2, 4)) >= Number(hour.split(":")[0])
-    );
-    const snow = forecast.prediccion.dia[0].nieve.filter(
-      ({ periodo }) => periodo === hour.split(":")[0]
-    );
+export default function SnowChart({ forecasts }: Props) {
+  const data = forecasts.map((forecast) => {
     return {
-      time: hour,
-      "Snow Probability (%)": snowProb.length ? snowProb[0].value : 0,
-      "Snow (mm)": snow.length ? snow[0].value : 0,
+      time: forecast.dateTime.split("T")[1].split(":")[0],
+      "Snowfall Probability (%)": Number(forecast.snowfallProbability),
+      "Snowfall (mm)": Number(forecast.snowfallProbability),
     };
   });
 
   return (
     <Card>
-      <Text>Chances of snow</Text>
+      <Text>Chances of snowfall</Text>
       <ComboChart
         className="mt-6"
         data={data}
@@ -47,13 +29,10 @@ export default function SnowChart({ forecast }: Props) {
         barSeries={{
           categories: ["Snow (mm)"],
           colors: ["pink"],
-          maxValue: forecast.prediccion.dia[0].precipitacion.filter(
-            ({ value }) => Number(value) > 6
-          ).length
-            ? forecast.prediccion.dia[0].precipitacion.filter(
-                ({ value }) => Number(value) > 6
-              ).length
-            : 6,
+          maxValue: forecasts.reduce(
+            (max, { snowfall }) => Math.max(max, Number(snowfall)),
+            6
+          ),
           valueFormatter: (number: number) =>
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}
