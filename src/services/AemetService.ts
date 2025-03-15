@@ -52,17 +52,3 @@ export async function getCityDailyForecast(cityCode: string) {
 
   return forecast;
 }
-
-export async function getWeatherForecast(
-  cityCode: string
-): Promise<WeatherForecast | null> {
-  const hourlyForecast = await getCityHourlyForecast(cityCode);
-  const dailyForecast = await getCityDailyForecast(cityCode);
-
-  if (!hourlyForecast || !dailyForecast) return null;
-
-  const weatherHourlyData = transformAemetToWeatherHourlyData(hourlyForecast);
-  const weatherDailyData = transformAemetToWeatherDailyData(dailyForecast);
-
-  return { weatherHourlyData, weatherDailyData };
-}

@@ -1,3 +1,4 @@
+import { getWeatherForecast, getWeatherSummary } from "@/app/actions";
 import CalloutCard from "@/components/CalloutCard";
 import { Divider } from "@/components/Divider";
 import HumidityChart from "@/components/HumidityChart";
@@ -10,7 +11,7 @@ import transformWeatherDataForAiPrompt, {
   AiAssistantResponse,
 } from "@/lib/aiAssistantData";
 import getBasePath from "@/lib/getBasePath";
-import { getWeatherForecast } from "@/services/AemetService";
+import { WeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
   params: {
@@ -20,26 +21,12 @@ type Props = {
 
 export default async function WeatherPage({ params: { cityCode } }: Props) {
   const weatherForecast = await getWeatherForecast(cityCode);
+
   if (!weatherForecast) return null;
 
   const { weatherHourlyData, weatherDailyData } = weatherForecast;
 
-  const aiAssistantWeatherData =
-    transformWeatherDataForAiPrompt(weatherForecast);
-
-  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ weatherData: aiAssistantWeatherData }),
-  });
-
-  let aiAssistantResponse = await res.json();
-  if (aiAssistantResponse)
-    aiAssistantResponse = JSON.parse(
-      aiAssistantResponse
-    ) as AiAssistantResponse;
+  const aiAssistantResponse = await getWeatherSummary(weatherForecast);
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50">
