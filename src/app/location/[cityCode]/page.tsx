@@ -1,4 +1,4 @@
-import { getWeatherSummary } from "@/app/actions";
+// import { getWeatherSummary } from "@/app/actions";
 import CalloutCard from "@/components/CalloutCard";
 import { Divider } from "@/components/Divider";
 import HumidityChart from "@/components/HumidityChart";
