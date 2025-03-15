@@ -53,5 +53,10 @@ export async function getWeatherSummary(
       weatherJoke: "",
     };
 
-  return JSON.parse(responseContent[0].text) as AiAssistantResponse;
+  const cleanResponse = responseContent[0].text
+    .replace(/^```json|```$/g, "")
+    .trim();
+  console.log(cleanResponse);
+
+  return JSON.parse(cleanResponse) as AiAssistantResponse;
 }
