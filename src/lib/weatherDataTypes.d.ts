@@ -1,10 +1,8 @@
 import {
-  Dum,
   EstadoCielo,
   HumedadRelativa,
   Nieve,
   Precipitacion,
-  PrediccionMunicipioProbabilidadPorHoras,
   ProbNieve,
   ProbPrecipitacion,
   ProbTormenum,

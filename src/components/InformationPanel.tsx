@@ -1,4 +1,3 @@
-import { PrediccionMunicipioProbabilidadPorHoras } from "@/types/AEMET/CityHourlyForecast";
 import Title from "./Title";
 import CityPicker from "./CityPicker";
 import { Divider } from "./Divider";

@@ -17,7 +17,7 @@ export const getWeatherForecast = async (cityCode: string) => {
     }
   );
 
-  let resWeatherForecastJSON = await resWeatherForecast.json();
+  const resWeatherForecastJSON = await resWeatherForecast.json();
   if (!resWeatherForecastJSON) return null;
 
   const weatherForecast = resWeatherForecastJSON as WeatherForecast;
@@ -40,7 +40,7 @@ export const getWeatherSummary = async (weatherForecast: WeatherForecast) => {
     }
   );
 
-  let resAiAssistantResponseJSON = await resAiAssistantResponse.json();
+  const resAiAssistantResponseJSON = await resAiAssistantResponse.json();
   let aiAssistantResponse = {} as AiAssistantResponse;
   if (resAiAssistantResponseJSON)
     aiAssistantResponse = JSON.parse(

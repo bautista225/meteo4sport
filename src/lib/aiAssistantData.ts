@@ -37,6 +37,8 @@ export default function transformWeatherDataForAiPrompt(
       currentWeatherIndex + 1,
       currentWeatherIndex + 4
     ),
+    sunrise,
+    sunset,
     city,
     region,
     country,

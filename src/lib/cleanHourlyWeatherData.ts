@@ -149,17 +149,6 @@ const getCurrentWeather = (
   );
 };
 
-const getNextHoursWeather = (
-  weatherData: HourWeatherForecast[],
-  currentDateTime: string
-) => {
-  return weatherData.filter(
-    (hourWeatherForecast) =>
-      hourWeatherForecast.dateTime.substring(0, 14) ===
-      currentDateTime.substring(0, 14)
-  );
-};
-
 export const transformAemetToWeatherHourlyData = (
   hourlyForecast: PrediccionMunicipioProbabilidadPorHoras
 ): WeatherHourlyData => {

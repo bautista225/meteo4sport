@@ -1,6 +1,3 @@
-import { transformAemetToWeatherDailyData } from "@/lib/cleanDailyWeatherData";
-import { transformAemetToWeatherHourlyData } from "@/lib/cleanHourlyWeatherData";
-import { WeatherForecast } from "@/lib/weatherDataTypes";
 import { PrediccionMunicipioProbabilidadPorDias } from "@/types/AEMET/CityDailyForecast";
 import { PrediccionMunicipioProbabilidadPorHoras } from "@/types/AEMET/CityHourlyForecast";
 import { AemetResponse } from "@/types/AEMET/Response";

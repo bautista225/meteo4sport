@@ -7,11 +7,6 @@ import RainChart from "@/components/RainChart";
 import SnowChart from "@/components/SnowChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
-import transformWeatherDataForAiPrompt, {
-  AiAssistantResponse,
-} from "@/lib/aiAssistantData";
-import getBasePath from "@/lib/getBasePath";
-import { WeatherForecast } from "@/lib/weatherDataTypes";
 
 type Props = {
   params: {
