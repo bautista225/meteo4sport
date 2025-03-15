@@ -15,9 +15,7 @@ export async function getCityHourlyForecast(cityCode: string) {
   const preliminaryResponse = await fetch(
     `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
     {
-      next: {
-        revalidate: 60,
-      },
+      cache: "no-cache",
     }
   );
   const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
