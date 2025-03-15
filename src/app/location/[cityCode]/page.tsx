@@ -6,6 +6,10 @@ import RainChart from "@/components/RainChart";
 import SnowChart from "@/components/SnowChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
+import transformWeatherDataForAiPrompt, {
+  AiAssistantResponse,
+} from "@/lib/aiAssistantData";
+import getBasePath from "@/lib/getBasePath";
 import { getWeatherForecast } from "@/services/AemetService";
 
 type Props = {
@@ -19,6 +23,23 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
   if (!weatherForecast) return null;
 
   const { weatherHourlyData, weatherDailyData } = weatherForecast;
+
+  const aiAssistantWeatherData =
+    transformWeatherDataForAiPrompt(weatherForecast);
+
+  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ weatherData: aiAssistantWeatherData }),
+  });
+
+  let aiAssistantResponse = await res.json();
+  if (aiAssistantResponse)
+    aiAssistantResponse = JSON.parse(
+      aiAssistantResponse
+    ) as AiAssistantResponse;
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50">
@@ -37,11 +58,19 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
           <div className="mb-6">
             <CalloutCard
               title="Information about the prediction"
-              message={`This is where Cohere summary will go! At the moment in ${weatherHourlyData.city} is ${weatherHourlyData.currentWeather.weatherConditionDescription} with ${weatherHourlyData.currentWeather.temperature}℃`}
+              message={aiAssistantResponse.summary}
             />
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+            <CalloutCard
+              title="What if I go running now?"
+              message={aiAssistantResponse.wearForRunning}
+            />
+            <CalloutCard
+              title="Weather joke"
+              message={aiAssistantResponse.weatherJoke}
+            />
             <StatCard
               title="Maximum Temperature"
               metric={`${weatherDailyData.currentWeather.maxTemperature}ºC`}

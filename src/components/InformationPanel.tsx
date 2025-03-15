@@ -14,11 +14,6 @@ type Props = {
 export default function InformationPanel({ weatherForecast }: Props) {
   const { weatherDailyData, weatherHourlyData } = weatherForecast;
 
-  console.log({
-    data1: weatherDailyData.currentWeather,
-    data2: weatherHourlyData.currentWeather,
-  });
-
   return (
     <div className="border-b-[1px] md:border-b-0 md:border-r-[1px] border-gray-200 dark:border-gray-800 p-10">
       <div className="pb-5">
