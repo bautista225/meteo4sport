@@ -11,6 +11,7 @@ export function getWeatherIconUrl(weatherCode: string) {
 }
 
 export async function getCityHourlyForecast(cityCode: string) {
+  console.log(`AEMET API KEY ${process.env.AEMET_API_KEY}`);
   const preliminaryResponse = await fetch(
     `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
     {

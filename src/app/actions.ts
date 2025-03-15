@@ -28,6 +28,7 @@ export const getWeatherSummary = async (weatherForecast: WeatherForecast) => {
   const aiAssistantWeatherData =
     transformWeatherDataForAiPrompt(weatherForecast);
 
+  console.log(`COHERE API KEY ${process.env.COHERE_API_KEY}`);
   const resAiAssistantResponse = await fetch(
     `${getBasePath()}/api/getWeatherSummary`,
     {
