@@ -1,4 +1,3 @@
-// import { getWeatherSummary } from "@/app/actions";
 import CalloutCard from "@/components/CalloutCard";
 import { Divider } from "@/components/Divider";
 import HumidityChart from "@/components/HumidityChart";
@@ -8,6 +7,7 @@ import SnowChart from "@/components/SnowChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import { getWeatherForecast } from "@/services/AemetService";
+import { getWeatherSummary } from "@/services/CohereService";
 
 type Props = {
   params: {
@@ -22,13 +22,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
 
   const { weatherHourlyData, weatherDailyData } = weatherForecast;
 
-  // const aiAssistantResponse = await getWeatherSummary(weatherForecast);
-
-  const aiAssistantResponse = {
-    summary: "",
-    wearForRunning: "",
-    weatherJoke: "",
-  };
+  const aiAssistantResponse = await getWeatherSummary(weatherForecast);
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50">
