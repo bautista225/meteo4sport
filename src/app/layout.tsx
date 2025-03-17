@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.className} antialiased`}>
       <body className="dark:bg-gray-950 flex flex-col min-h-screen">
-        <ThemeProvider attribute="class" defaultTheme="white" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="white">
           <Navbar />
           <div className="flex flex-1 justify-center">{children}</div>
           <FooterBar />
