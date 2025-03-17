@@ -60,7 +60,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
             />
 
             <StatCard
-              title="Temperaturas mínima"
+              title="Temperatura mínima"
               metric={`${weatherDailyData.currentWeather.minTemperature}ºC`}
             />
 
