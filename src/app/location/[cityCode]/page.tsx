@@ -28,7 +28,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px]">
       <InformationPanel weatherForecast={weatherForecast} />
 
-      <div className="flex-1 p-5 lg:p-10">
+      <div className="flex-1 lg:p-10">
         <div className="p-5">
           <div className="pb-5">
             <h2 className="text-xl font-bold">Resumen de hoy</h2>

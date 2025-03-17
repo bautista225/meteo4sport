@@ -15,7 +15,7 @@ export default function InformationPanel({ weatherForecast }: Props) {
   const { weatherDailyData, weatherHourlyData } = weatherForecast;
 
   return (
-    <div className="border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-10 lg:pt-14">
+    <div className="border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-5 pt-12 lg:p-10 lg:pt-14 md:max-w-md lg:max-w-lg">
       <div className="pb-5">
         <Title className="md:text-5xl text-2xl">{weatherDailyData.city}</Title>
       </div>
