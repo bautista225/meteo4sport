@@ -20,12 +20,7 @@ export default function RootLayout({
       className={`${GeistSans.className} antialiased dark:bg-gray-950`}
     >
       <body className="dark:bg-gray-950">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="white"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="white" enableSystem>
           <Navbar />
           <div>{children}</div>
         </ThemeProvider>

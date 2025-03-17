@@ -4,7 +4,7 @@ import { getCitiesByRegion, getRegions } from "@/app/data/cityCodes";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Select from "react-select";
-import { RiEarthLine } from "@remixicon/react";
+import { RiEarthLine, RiBuildingLine } from "@remixicon/react";
 
 type option = {
   value: { code: string; name: string };
@@ -54,7 +54,7 @@ export default function CityPicker() {
       />
 
       <div className="text-gray-900 dark:text-gray-50 flex items-center gap-x-2">
-        <RiEarthLine />
+        <RiBuildingLine />
         <label htmlFor="city">City</label>
       </div>
       <Select

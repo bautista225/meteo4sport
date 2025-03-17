@@ -6,7 +6,7 @@ import { MessageSquareWarningIcon } from "lucide-react";
 
 export default function Error() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-slate-500 mx-12 text-pretty">
+    <div className="min-h-screen flex flex-col items-center justify-center text-slate-500 mx-10 text-pretty">
       <MessageSquareWarningIcon
         className="h-24 w-24 animate-bounce text-orange-500"
         color="orange"
