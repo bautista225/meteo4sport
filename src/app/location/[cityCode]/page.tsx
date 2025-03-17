@@ -25,7 +25,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
   const aiAssistantResponse = await getWeatherSummary(weatherForecast);
 
   return (
-    <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50">
+    <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px]">
       <InformationPanel weatherForecast={weatherForecast} />
 
       <div className="flex-1 p-5 lg:p-10">

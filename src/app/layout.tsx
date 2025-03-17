@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans"; // import font
 import "./globals.css";
+import ThemeProvider from "@/components/ThemeProvider";
+import ToggleThemeButton from "@/components/ToggleThemeButton";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "meteo4sport",
@@ -13,12 +16,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // add font to className, also add antialiased and dark mode
     <html
       lang="en"
       className={`${GeistSans.className} antialiased dark:bg-gray-950`}
     >
-      <body>{children}</body>
+      <body className="dark:bg-gray-950">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="white"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <div>{children}</div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
