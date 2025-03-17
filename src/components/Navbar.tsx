@@ -3,7 +3,7 @@ import ToggleThemeButton from "./ToggleThemeButton";
 
 export default function Navbar() {
   return (
-    <nav className="bg-white dark:bg-gray-950/40 backdrop-blur-sm fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-800">
+    <nav className="bg-white/40 dark:bg-gray-950/40 backdrop-blur-sm fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto py-4 px-6">
         <Link
           href="/"

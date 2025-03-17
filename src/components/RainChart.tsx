@@ -41,7 +41,7 @@ export default function RainChart({ forecasts }: Props) {
         }}
         lineSeries={{
           categories: [
-            "Probabilidad de lluvia (%)",
+            "Probabilidad de precipitación (%)",
             "Probabilidad de tormenta (%)",
           ],
           colors: ["cyan", "gray"],
