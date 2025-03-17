@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans"; // import font
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
-import ToggleThemeButton from "@/components/ToggleThemeButton";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
