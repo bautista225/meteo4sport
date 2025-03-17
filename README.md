@@ -6,4 +6,4 @@
 ## Overview
 Tired of staring at the weather forecast wondering what to wear for your run? Me too! That’s why I built this fun web app using Next.js and Tailwind. It pulls live weather data from AEMET (the Spanish Meteorological Agency) and taps into Cohere AI to give you spot-on outfit suggestions, all while cracking a joke to brighten your day. No more weather-related outfit dilemmas—just good advice and a smile!
 
-![image](https://github.com/user-attachments/assets/9250eb53-0ba7-4beb-98a4-29ff57af186e)
+![Captura de pantalla 2025-03-17 203838](https://github.com/user-attachments/assets/a810d06f-6c57-4ba7-ad88-d387a54dfcc3)
