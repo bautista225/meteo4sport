@@ -13,19 +13,19 @@ export default function HumidityChart({ forecasts }: Props) {
   const data = forecasts.map((forecast) => {
     return {
       time: forecast.dateTime.split("T")[1].split(":")[0],
-      "Humidity (%)": Number(forecast.relativeHumidity),
+      "Humedad relativa (%)": Number(forecast.relativeHumidity),
     };
   });
 
   return (
     <Card>
-      <Text>Humidity</Text>
+      <Text>Humedad relativa</Text>
       <AreaChart
         className="mt-6"
         data={data}
         index="time"
         showLegend
-        categories={["Humidity (%)"]}
+        categories={["Humedad relativa (%)"]}
         valueFormatter={(number: number) =>
           `${Intl.NumberFormat().format(number).toString()}%`
         }

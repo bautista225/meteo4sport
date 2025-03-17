@@ -14,23 +14,23 @@ export default function RainChart({ forecasts }: Props) {
     .map((forecast) => {
       return {
         time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Storm Probability (%)": Number(forecast.stormProbability),
-        "Rain Probability (%)": Number(forecast.rainProbability),
-        "Rain (mm)": Number(forecast.rain),
+        "Probabilidad de tormenta (%)": Number(forecast.stormProbability),
+        "Probabilidad de precipitación (%)": Number(forecast.rainProbability),
+        "Cantidad de lluvia (mm)": Number(forecast.rain),
       };
     })
     .slice(0, 24);
 
   return (
     <Card>
-      <Text>Chances of rain</Text>
+      <Text>Precipitaciones</Text>
       <ComboChart
         className="mt-6"
         data={data}
         index="time"
         enableBiaxial
         barSeries={{
-          categories: ["Rain (mm)"],
+          categories: ["Cantidad de lluvia (mm)"],
           colors: ["blue"],
           maxValue: forecasts.reduce(
             (max, { rain }) => Math.max(max, Number(rain)),
@@ -40,7 +40,10 @@ export default function RainChart({ forecasts }: Props) {
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}
         lineSeries={{
-          categories: ["Rain Probability (%)", "Storm Probability (%)"],
+          categories: [
+            "Probabilidad de lluvia (%)",
+            "Probabilidad de tormenta (%)",
+          ],
           colors: ["cyan", "gray"],
           maxValue: 100,
           valueFormatter: (number: number) =>

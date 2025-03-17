@@ -5,14 +5,11 @@ import { SunIcon } from "lucide-react";
 export default function Loading() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-slate-500 px-10 text-pretty">
-      <SunIcon
-        className="h-24 w-24 animate-slideDownAndFade text-yellow-500"
-        color="yellow"
-      />
-      <Title className="my-5">Loading weather information...</Title>
+      <SunIcon className="h-24 w-24 text-yellow-500 animate-bounce" />
+      <Title className="my-5">Cargando información meteorológica...</Title>
       <Text>
-        Hold on, we are crunching the numbers and generating an AI summary of
-        the weather!
+        Analizando los números y generando un resumen personalizado con IA del
+        clima
       </Text>
     </div>
   );

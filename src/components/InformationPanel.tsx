@@ -5,6 +5,7 @@ import { getWeatherIconUrl } from "@/services/AemetService";
 import Image from "next/image";
 import { SunriseIcon, SunsetIcon } from "lucide-react";
 import { WeatherForecast } from "@/lib/weatherDataTypes";
+import DataObtainedFrom from "./DataObtainedFrom";
 
 type Props = {
   weatherForecast: WeatherForecast;
@@ -14,7 +15,7 @@ export default function InformationPanel({ weatherForecast }: Props) {
   const { weatherDailyData, weatherHourlyData } = weatherForecast;
 
   return (
-    <div className="border-b-[1px] md:border-b-0 md:border-r-[1px] border-gray-200 dark:border-gray-800 p-10 lg:pt-14">
+    <div className="border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-10 lg:pt-14">
       <div className="pb-5">
         <Title className="md:text-5xl text-2xl">{weatherDailyData.city}</Title>
       </div>
@@ -26,7 +27,7 @@ export default function InformationPanel({ weatherForecast }: Props) {
       <div className="mt-5 flex items-center justify-between gap-x-10 mb-5">
         <div>
           <p className="text-xl">
-            {new Date().toLocaleDateString("en-GB", {
+            {new Date().toLocaleDateString("es-ES", {
               weekday: "long",
               year: "numeric",
               month: "long",
@@ -35,11 +36,11 @@ export default function InformationPanel({ weatherForecast }: Props) {
           </p>
 
           <p className="font-extralight">
-            Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
+            Zona horaria: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
         <p className="text-xl font-bold uppercase">
-          {new Date().toLocaleTimeString("en-GB", {
+          {new Date().toLocaleTimeString("es-ES", {
             hour: "numeric",
             minute: "numeric",
             hour12: false,
@@ -81,9 +82,9 @@ export default function InformationPanel({ weatherForecast }: Props) {
           />
           <div className="flex items-center gap-x-2 px-3 py-2">
             <p className="flex items-center justify-between gap-2">
-              <SunriseIcon color="yellow" />
+              <SunriseIcon className="text-yellow-500 dark:text-yellow-400" />
             </p>
-            <p>Sunrise</p>
+            <p>Amanecer</p>
             <div className="ml-auto">
               {weatherHourlyData.currentWeather.sunrise}
             </div>
@@ -99,12 +100,16 @@ export default function InformationPanel({ weatherForecast }: Props) {
             <p className="flex items-center justify-between gap-2">
               <SunsetIcon color="orange" />
             </p>
-            <p>Sunset</p>
+            <p>Ocaso</p>
             <div className="ml-auto">
               {weatherHourlyData.currentWeather.sunset}
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-14">
+        <DataObtainedFrom />
       </div>
     </div>
   );

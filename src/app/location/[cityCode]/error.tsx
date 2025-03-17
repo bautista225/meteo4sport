@@ -11,7 +11,9 @@ export default function Error() {
         className="h-24 w-24 animate-bounce text-orange-500"
         color="orange"
       />
-      <Title className="my-5">Loading weather information has failed</Title>
+      <Title className="my-5">
+        La carga de la información meteorológica ha fallado
+      </Title>
       <Text>
         El servicio de la AEMET está recibiendo demasiadas solicitudes, prueba
         en unos segundos.

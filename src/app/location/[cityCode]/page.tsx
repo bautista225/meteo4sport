@@ -31,60 +31,69 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
       <div className="flex-1 p-5 lg:p-10">
         <div className="p-5">
           <div className="pb-5">
-            <h2 className="text-xl font-bold">Todays Overview</h2>
+            <h2 className="text-xl font-bold">Resumen de hoy</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Last Updated at:{" "}
+              Última actualización de la AEMET:{" "}
               {new Date(weatherHourlyData.forecastCreated).toLocaleString()}{" "}
             </p>
           </div>
 
           <div className="mb-6">
             <CalloutCard
-              title="Information about the prediction"
+              title="Información sobre la predicción"
               message={aiAssistantResponse.summary}
             />
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
             <CalloutCard
-              title="What if I go running now?"
+              title="¿Qué pasa si salgo a correr ahora?"
               message={aiAssistantResponse.wearForRunning}
             />
             <CalloutCard
-              title="Weather joke"
+              title="Chiste sobre el clima"
               message={aiAssistantResponse.weatherJoke}
             />
             <StatCard
-              title="Maximum Temperature"
+              title="Temperatura máxima"
               metric={`${weatherDailyData.currentWeather.maxTemperature}ºC`}
             />
 
             <StatCard
-              title="Minimum Temperature"
+              title="Temperaturas mínima"
               metric={`${weatherDailyData.currentWeather.minTemperature}ºC`}
             />
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
               <StatCard
-                title="Max UV Index"
+                title="Índice UV máximo"
                 metric={`${weatherDailyData.currentWeather.uvMax}`}
               />
 
               {(Number(weatherDailyData.currentWeather.uvMax) || 0) > 3 && (
                 <CalloutCard
-                  title="The UV is high today, be sure to wear SPF!"
-                  warning
+                  title="Aviso"
+                  message={
+                    (Number(weatherDailyData.currentWeather.uvMax) || 0) > 5
+                      ? "Hoy el índice UV está muy alto, ¡asegúrate de usar crema solar de +50 FPS!"
+                      : "Con este índice UV es recomendable utilizar crema solar de +25 FPS en horas altas"
+                  }
+                  variant={
+                    (Number(weatherDailyData.currentWeather.uvMax) || 0) > 5
+                      ? "error"
+                      : "warning"
+                  }
                 />
               )}
             </div>
 
             <div className="flex gap-x-3">
               <StatCard
-                title="Wind Speed"
+                title="Velocidad del viento"
                 metric={`${weatherHourlyData.currentWeather.windSpeed} km/h`}
               />
               <StatCard
-                title="Wind Direction"
+                title="Dirección del viento"
                 metric={`${weatherHourlyData.currentWeather.windDirection}`}
               />
             </div>

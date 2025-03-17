@@ -3,10 +3,12 @@ import { GeistSans } from "geist/font/sans"; // import font
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
+import { FooterBar } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "meteo4sport",
-  description: "Check what you wear for your next outside running",
+  description:
+    "¡Consulta el tiempo y prepara tu próxima carrera al aire libre con la IA integrada!",
 };
 
 export default function RootLayout({
@@ -16,10 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.className} antialiased`}>
-      <body className="dark:bg-gray-950">
+      <body className="dark:bg-gray-950 flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="white" enableSystem>
           <Navbar />
-          <div>{children}</div>
+          <div className="flex flex-1 justify-center">{children}</div>
+          <FooterBar />
         </ThemeProvider>
       </body>
     </html>

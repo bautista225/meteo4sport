@@ -43,7 +43,7 @@ export default function CityPicker() {
     <div className="space-y-4">
       <div className="text-gray-900 dark:text-gray-50 flex items-center gap-x-2">
         <RiEarthLine />
-        <label htmlFor="region">Region</label>
+        <label htmlFor="region">Comunidad autónoma</label>
       </div>
       <Select
         id="region"
@@ -55,7 +55,7 @@ export default function CityPicker() {
 
       <div className="text-gray-900 dark:text-gray-50 flex items-center gap-x-2">
         <RiBuildingLine />
-        <label htmlFor="city">City</label>
+        <label htmlFor="city">Municipio</label>
       </div>
       <Select
         isDisabled={region === null}

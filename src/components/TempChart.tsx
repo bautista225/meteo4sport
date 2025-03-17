@@ -14,21 +14,21 @@ export default function TempChart({ forecasts }: Props) {
     .map((forecast) => {
       return {
         time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Temperature (ºC)": Number(forecast.temperature),
-        "Feels like (ºC)": Number(forecast.feelsLike),
+        "Temperatura (ºC)": Number(forecast.temperature),
+        "Sensación térmica (ºC)": Number(forecast.feelsLike),
       };
     })
     .slice(0, 24);
 
   return (
     <Card>
-      <Text>Temperature & Feels like</Text>
+      <Text>Temperatura y sensación térmica</Text>
       <AreaChart
         className="mt-6"
         data={data}
         index="time"
         showLegend
-        categories={["Feels like (ºC)", "Temperature (ºC)"]}
+        categories={["Sensación térmica (ºC)", "Temperatura (ºC)"]}
         valueFormatter={(number: number) =>
           `${Intl.NumberFormat().format(number).toString()}°C`
         }
