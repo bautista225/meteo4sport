@@ -14,22 +14,27 @@ export function getWeatherIconUrl(weatherCode: string) {
 }
 
 export async function getCityHourlyForecast(cityCode: string) {
-  const preliminaryResponse = await fetch(
-    `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
-    {
-      cache: "no-cache",
-    }
-  );
-  const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
+  try {
+    const preliminaryResponse = await fetch(
+      `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
+      {
+        cache: "no-cache",
+      }
+    );
+    const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
 
-  if (!preliminaryData.datos) return null;
+    if (!preliminaryData.datos) return null;
 
-  const response = await fetch(preliminaryData.datos);
-  const forecast = (
-    await response.json()
-  )[0] as PrediccionMunicipioProbabilidadPorHoras;
+    const response = await fetch(preliminaryData.datos);
+    const forecast = (
+      await response.json()
+    )[0] as PrediccionMunicipioProbabilidadPorHoras;
 
-  return forecast;
+    return forecast;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
 export async function getCityDailyForecast(cityCode: string) {

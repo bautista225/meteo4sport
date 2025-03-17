@@ -56,7 +56,6 @@ export async function getWeatherSummary(
   const cleanResponse = responseContent[0].text
     .replace(/^```json|```$/g, "")
     .trim();
-  console.log(cleanResponse);
 
   return JSON.parse(cleanResponse) as AiAssistantResponse;
 }

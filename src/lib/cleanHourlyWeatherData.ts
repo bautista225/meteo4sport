@@ -163,8 +163,6 @@ export const transformAemetToWeatherHourlyData = (
     currentDateTime
   );
 
-  console.log(currentDateTime);
-
   return {
     city: hourlyForecast.nombre,
     forecastLanguage: hourlyForecast.origen.language,
