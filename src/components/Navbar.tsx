@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ToggleThemeButton from "./ToggleThemeButton";
+import GitHubButton from "./GithubButton";
 
 export default function Navbar() {
   return (
@@ -7,7 +8,7 @@ export default function Navbar() {
       <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto py-4 px-6">
         <Link
           href="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
+          className="flex items-center space-x-3 rtl:space-x-reverse hover:cursor-pointer  hover:text-blue-700 dark:hover:text-blue-500"
         >
           {/* <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -19,8 +20,9 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="md:order-2">
+        <div className="md:order-2 flex justify-center items-center">
           <ToggleThemeButton />
+          <GitHubButton />
         </div>
       </div>
     </nav>
