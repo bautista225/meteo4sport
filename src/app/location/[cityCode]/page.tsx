@@ -26,9 +26,9 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px]">
-      <InformationPanel weatherForecast={weatherForecast} />
+      <InformationPanel weatherForecast={weatherForecast} cityCode={cityCode} />
 
-      <div className="flex-1 lg:p-10">
+      <div className="flex-1 lg:pt-10 lg:p-3 2xl:p-10">
         <div className="p-5">
           <div className="pb-5">
             <h2 className="text-xl font-bold">Resumen de hoy</h2>
@@ -54,7 +54,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
               title="Chiste sobre el clima"
               message={aiAssistantResponse.weatherJoke}
             />
-            <StatCard
+            {/* <StatCard
               title="Temperatura máxima"
               metric={`${weatherDailyData.currentWeather.maxTemperature}ºC`}
             />
@@ -62,7 +62,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
             <StatCard
               title="Temperatura mínima"
               metric={`${weatherDailyData.currentWeather.minTemperature}ºC`}
-            />
+            /> */}
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
               <StatCard

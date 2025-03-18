@@ -6,18 +6,23 @@ import Image from "next/image";
 import { SunriseIcon, SunsetIcon } from "lucide-react";
 import { WeatherForecast } from "@/lib/weatherDataTypes";
 import DataObtainedFrom from "./DataObtainedFrom";
+import Metric from "./Metric";
+import { getCityName } from "@/app/data/cityCodes";
 
 type Props = {
   weatherForecast: WeatherForecast;
+  cityCode: string;
 };
 
-export default function InformationPanel({ weatherForecast }: Props) {
+export default function InformationPanel({ weatherForecast, cityCode }: Props) {
   const { weatherDailyData, weatherHourlyData } = weatherForecast;
 
   return (
-    <div className="border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-5 pt-12 lg:p-10 lg:pt-14 md:max-w-md lg:max-w-lg">
+    <div className="border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 p-5 pt-12 lg:p-8 2xl:p-10 lg:pt-14 2xl:pt-14 md:max-w-md 2xl:max-w-lg">
       <div className="pb-5">
-        <Title className="md:text-5xl text-2xl">{weatherDailyData.city}</Title>
+        <Title className="md:text-4xl 2xl:text-5xl text-2xl">
+          {getCityName(cityCode)?.NOMBRE}
+        </Title>
       </div>
 
       <CityPicker />
@@ -50,25 +55,33 @@ export default function InformationPanel({ weatherForecast }: Props) {
 
       <Divider className="mt-10" />
 
+      <p>Ahora</p>
+
       <div className="flex items-center justify-between">
         <div>
-          <Image
-            src={getWeatherIconUrl(
-              weatherHourlyData.currentWeather.weatherConditionCode || ""
-            )}
-            alt={
-              weatherHourlyData.currentWeather.weatherConditionDescription ||
-              "NA"
-            }
-            width={75}
-            height={75}
-          />
           <div className="flex items-center justify-between gap-x-10">
-            <p className="text-4xl md:text-6xl font-semibold">
-              {weatherHourlyData.currentWeather.temperature}ºC
-            </p>
+            <Image
+              src={getWeatherIconUrl(
+                weatherHourlyData.currentWeather.weatherConditionCode || ""
+              )}
+              alt={
+                weatherHourlyData.currentWeather.weatherConditionDescription ||
+                "NA"
+              }
+              width={75}
+              height={75}
+            />
             <p className="text-right font-extralight text-lg">
               {weatherHourlyData.currentWeather.weatherConditionDescription}
+            </p>
+          </div>
+          <div className="flex items-center justify-between gap-x-10">
+            <Metric>{weatherHourlyData.currentWeather.temperature}ºC</Metric>
+            <p className="text-right font-extralight text-lg text-red-500">
+              Máxima: {weatherDailyData.currentWeather.maxTemperature}ºC
+            </p>
+            <p className="text-right font-extralight text-lg text-blue-500">
+              Mínima: {weatherDailyData.currentWeather.minTemperature}ºC
             </p>
           </div>
         </div>

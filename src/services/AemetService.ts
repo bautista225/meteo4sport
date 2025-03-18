@@ -25,7 +25,12 @@ export async function getCityHourlyForecast(cityCode: string) {
 
     if (!preliminaryData.datos) return null;
 
-    const response = await fetch(preliminaryData.datos);
+    const response = await fetch(preliminaryData.datos, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    });
     const forecast = (
       await response.json()
     )[0] as PrediccionMunicipioProbabilidadPorHoras;
@@ -48,7 +53,12 @@ export async function getCityDailyForecast(cityCode: string) {
 
   if (!preliminaryData.datos) return null;
 
-  const response = await fetch(preliminaryData.datos);
+  const response = await fetch(preliminaryData.datos, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  });
   const forecast = (
     await response.json()
   )[0] as PrediccionMunicipioProbabilidadPorDias;

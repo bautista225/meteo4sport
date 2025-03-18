@@ -32,3 +32,7 @@ export function getCitiesByRegion(regionCode: string) {
     })
   );
 }
+
+export function getCityName(cityCode: string) {
+  return SPAIN_CITY_LIST.find((city) => city.CPRO + city.CMUN === cityCode);
+}
