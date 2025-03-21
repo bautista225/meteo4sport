@@ -126,19 +126,27 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
                 metric={`${weatherDailyData.currentWeather.uvMax}`}
               />
 
-              {(Number(weatherDailyData.currentWeather.uvMax) || 0) > 3 && (
+              {((Number(weatherDailyData.currentWeather.uvMax) || 0) > 3 && (
                 <CalloutCard
-                  title="Aviso"
+                  title="¿Me pongo crema solar?"
                   message={
                     (Number(weatherDailyData.currentWeather.uvMax) || 0) > 5
                       ? "Hoy el índice UV está muy alto, ¡asegúrate de usar crema solar de +50 FPS!"
-                      : "Con este índice UV es recomendable utilizar crema solar de +25 FPS en horas altas"
+                      : "Con este índice UV es recomendable utilizar crema solar de +25 FPS en horas altas."
                   }
                   variant={
                     (Number(weatherDailyData.currentWeather.uvMax) || 0) > 5
                       ? "error"
                       : "warning"
                   }
+                />
+              )) || (
+                <CalloutCard
+                  title="¿Me pongo crema solar?"
+                  message={
+                    "El índice UV es bajo en horas altas. No obstante, utilizar protector solar todos los días contribuye a retrasar el envejecimiento de la piel."
+                  }
+                  variant={"default"}
                 />
               )}
             </div>
