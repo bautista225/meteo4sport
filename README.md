@@ -3,7 +3,8 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)
 
-![Location page](https://github.com/user-attachments/assets/3a676082-1c3d-4fe7-8b8a-8f48ec063105)
+![Location page](https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9)
+
 
 ## 🔎 Overview
 Tired of staring at the weather forecast wondering what to wear for your run? Me too! That’s why I built this fun web app using Next.js and Tailwind. It pulls live weather data from AEMET (the Spanish Meteorological Agency) and taps into Cohere AI to give you spot-on outfit suggestions, all while cracking a joke to brighten your day. No more weather-related outfit dilemmas—just good advice and a smile!
@@ -15,6 +16,7 @@ Tired of staring at the weather forecast wondering what to wear for your run? Me
   - Obtain details about using SPF for the maximum UV index in the current day.
   - 7 day forecast
   - Sunrise and sunset time.
+  - Advice about SPF depending on UV index.
 - Integration of Cohere AI
   - Summary of the weather.
   - Advice about clothes for doing sport with the current weather.
@@ -27,10 +29,24 @@ Tired of staring at the weather forecast wondering what to wear for your run? Me
 1. Select your location in the main page.
 2. Visualize the different stats and advices in the location page.
 
-<p align="center">
+<p align="left">
    <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="270"/>
-   <img alt="Location page" src="https://github.com/user-attachments/assets/3a676082-1c3d-4fe7-8b8a-8f48ec063105" height="270"/>
-</p
+   <img alt="Location page" src="https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9" height="270"/>
+</p>
+
+In dark mode:
+
+<p align="left">
+   <img alt="Home page - dark mode" src="https://github.com/user-attachments/assets/abbac0a8-cbda-4eab-bd6c-4c90a7755ebb" height="270"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/79591aa5-435f-4af5-8718-d88f42761577" height="270"/>
+</p>
+
+Mobile view:
+<p align="left">
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/4d96833a-d850-4aa5-a48b-9fd6a7644604" height="370"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/38b81bd1-ffb7-4087-a9b3-0bfb810e852b" height="370"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/55d59b49-f23e-438b-bc32-dcf3080c2aea" height="370"/>
+</p>
 
 ## 🖥 Installation in local
 ### Obtaining an AEMET Open Data API developer ID
