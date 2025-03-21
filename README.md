@@ -30,22 +30,22 @@ Tired of staring at the weather forecast wondering what to wear for your run? Me
 2. Visualize the different stats and advices in the location page.
 
 <p align="left">
-   <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="270"/>
-   <img alt="Location page" src="https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9" height="270"/>
+   <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="280"/>
+   <img alt="Location page" src="https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9" height="280"/>
 </p>
 
 In dark mode:
 
 <p align="left">
-   <img alt="Home page - dark mode" src="https://github.com/user-attachments/assets/abbac0a8-cbda-4eab-bd6c-4c90a7755ebb" height="270"/>
-   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/79591aa5-435f-4af5-8718-d88f42761577" height="270"/>
+   <img alt="Home page - dark mode" src="https://github.com/user-attachments/assets/abbac0a8-cbda-4eab-bd6c-4c90a7755ebb" height="280"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/79591aa5-435f-4af5-8718-d88f42761577" height="280"/>
 </p>
 
 Mobile view:
 <p align="left">
-   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/4d96833a-d850-4aa5-a48b-9fd6a7644604" height="370"/>
-   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/38b81bd1-ffb7-4087-a9b3-0bfb810e852b" height="370"/>
-   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/55d59b49-f23e-438b-bc32-dcf3080c2aea" height="370"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/4d96833a-d850-4aa5-a48b-9fd6a7644604" height="470"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/38b81bd1-ffb7-4087-a9b3-0bfb810e852b" height="470"/>
+   <img alt="Location page - dark mode" src="https://github.com/user-attachments/assets/55d59b49-f23e-438b-bc32-dcf3080c2aea" height="470"/>
 </p>
 
 ## 🖥 Installation in local
