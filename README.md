@@ -30,8 +30,8 @@ Tired of staring at the weather forecast wondering what to wear for your run? Me
 2. Visualize the different stats and advices in the location page.
 
 <p align="left">
-   <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="280"/>
-   <img alt="Location page" src="https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9" height="280"/>
+   <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="275"/>
+   <img alt="Location page" src="https://github.com/user-attachments/assets/2b156232-0930-4d89-8e43-d9c76de799d9" height="275"/>
 </p>
 
 In dark mode:
