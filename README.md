@@ -30,7 +30,7 @@ Visualize the different stats and advices in the location page.
 
 ## 🖥 Installation in local
 ### Obtaining an AEMET Open Data API developer ID
-1. Acces to the AEMET Open Data panel
+1. Acces to the AEMET Open Data panel: [AEMET API ID Request Link](https://opendata.aemet.es/centrodedescargas/altaUsuario?)
 2. Request your ID indicating an email
 3. Accept the email to obtain it.
 
