@@ -8,6 +8,12 @@ import { WeatherForecast } from "@/lib/weatherDataTypes";
 import DataObtainedFrom from "./DataObtainedFrom";
 import Metric from "./Metric";
 import { getCityName } from "@/app/data/cityCodes";
+import {
+  RiArrowDownLine,
+  RiArrowUpLine,
+  RiContrastDrop2Line,
+  RiUmbrellaLine,
+} from "@remixicon/react";
 
 type Props = {
   weatherForecast: WeatherForecast;
@@ -55,35 +61,43 @@ export default function InformationPanel({ weatherForecast, cityCode }: Props) {
 
       <Divider className="mt-10" />
 
-      <p>Ahora</p>
+      <p className="font-semibold">Ahora</p>
 
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="flex items-center justify-between gap-x-10">
-            <Image
-              src={getWeatherIconUrl(
-                weatherHourlyData.currentWeather.weatherConditionCode || ""
-              )}
-              alt={
-                weatherHourlyData.currentWeather.weatherConditionDescription ||
-                "NA"
-              }
-              width={75}
-              height={75}
-            />
-            <p className="text-right font-extralight text-lg">
-              {weatherHourlyData.currentWeather.weatherConditionDescription}
-            </p>
-          </div>
-          <div className="flex items-center justify-between gap-x-10">
-            <Metric>{weatherHourlyData.currentWeather.temperature}ºC</Metric>
-            <p className="text-right font-extralight text-lg text-red-500">
-              Máxima: {weatherDailyData.currentWeather.maxTemperature}ºC
-            </p>
-            <p className="text-right font-extralight text-lg text-blue-500">
-              Mínima: {weatherDailyData.currentWeather.minTemperature}ºC
-            </p>
-          </div>
+      <div className="flex items-center justify-between gap-x-10">
+        <Image
+          src={getWeatherIconUrl(
+            weatherHourlyData.currentWeather.weatherConditionCode || ""
+          )}
+          alt={
+            weatherHourlyData.currentWeather.weatherConditionDescription || "NA"
+          }
+          width={75}
+          height={75}
+        />
+        <p className="text-right font-extralight text-lg">
+          {weatherHourlyData.currentWeather.weatherConditionDescription}
+        </p>
+      </div>
+      <div className="flex items-center justify-between gap-x-10">
+        <Metric>{weatherHourlyData.currentWeather.temperature}ºC</Metric>
+        <div className="flex gap-x-2 items-center">
+          <p className="flex items-center font-extralight text-red-500">
+            <RiArrowUpLine size={20} />{" "}
+            {weatherDailyData.currentWeather.maxTemperature}
+            ºC
+          </p>
+          <p className="flex items-center font-extralight text-blue-500">
+            <RiArrowDownLine size={20} />{" "}
+            {weatherDailyData.currentWeather.minTemperature}ºC
+          </p>
+          <p className="flex items-center font-extralight text-blue-900">
+            <RiUmbrellaLine size={20} />{" "}
+            {weatherHourlyData.currentWeather.rainProbability}%
+          </p>
+          <p className="flex items-center font-extralight text-sky-600">
+            <RiContrastDrop2Line size={20} />{" "}
+            {weatherHourlyData.currentWeather.rain}mm
+          </p>
         </div>
       </div>
 

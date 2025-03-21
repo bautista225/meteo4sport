@@ -34,7 +34,7 @@ export default function RainChart({ forecasts }: Props) {
           colors: ["blue"],
           maxValue: forecasts.reduce(
             (max, { rain }) => Math.max(max, Number(rain)),
-            6
+            6.0
           ),
           valueFormatter: (number: number) =>
             `${Intl.NumberFormat().format(number).toString()} mm`,

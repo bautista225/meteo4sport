@@ -1,4 +1,5 @@
 import CalloutCard from "@/components/CalloutCard";
+import { Card } from "@/components/Card";
 import { Divider } from "@/components/Divider";
 import HumidityChart from "@/components/HumidityChart";
 import InformationPanel from "@/components/InformationPanel";
@@ -6,8 +7,17 @@ import RainChart from "@/components/RainChart";
 import SnowChart from "@/components/SnowChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
-import { getWeatherForecast } from "@/services/AemetService";
+import WeatherCard from "@/components/WeatherCard";
+import { getWeatherForecast, getWeatherIconUrl } from "@/services/AemetService";
 import { getWeatherSummary } from "@/services/CohereService";
+import {
+  RiArrowDownLine,
+  RiArrowUpLine,
+  RiContrastDrop2Line,
+  RiUmbrellaLine,
+  RiWaterPercentFill,
+} from "@remixicon/react";
+import Image from "next/image";
 
 type Props = {
   params: {
@@ -30,6 +40,62 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
 
       <div className="flex-1 lg:pt-10 lg:p-3 2xl:p-10">
         <div className="p-5">
+          <div className="pb-5">
+            <h2 className="text-xl font-bold mb-3">Predicción a 7 días</h2>
+            <div className="hidden md:flex flex-row mx-auto gap-2 flex-wrap">
+              {weatherDailyData.forecasts.map((forecast) => {
+                return (
+                  <div key={forecast.dateTime}>
+                    <WeatherCard dayWeatherForecast={forecast} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="md:hidden">
+              <Card className="flex flex-col gap-y-2">
+                {weatherDailyData.forecasts.map((forecast) => {
+                  return (
+                    <div
+                      key={forecast.dateTime}
+                      className="grid grid-flow-col grid-cols-6 size-full"
+                    >
+                      <p className="col-span-2 text-[0.75rem]">
+                        {new Date(forecast.dateTime).toLocaleString("es-ES", {
+                          weekday: "long",
+                        }) +
+                          " " +
+                          new Date(forecast.dateTime).toLocaleString("es-ES", {
+                            day: "numeric",
+                          })}
+                      </p>
+                      <Image
+                        className="col-span-1"
+                        src={getWeatherIconUrl(
+                          forecast.weatherConditionCode || ""
+                        )}
+                        alt={forecast.weatherConditionDescription || "NA"}
+                        width={20}
+                        height={20}
+                      />
+                      <p className="flex items-center font-extralight text-red-500 text-[0.75rem] col-span-1">
+                        <RiArrowUpLine className="size-3" />{" "}
+                        {forecast.maxTemperature}ºC
+                      </p>
+                      <p className="flex items-center font-extralight text-blue-500 text-[0.75rem] col-span-1">
+                        <RiArrowDownLine className="size-3" />{" "}
+                        {forecast.minTemperature}ºC
+                      </p>
+                      <p className="flex items-center font-extralight text-blue-900 text-[0.75rem] col-span-1">
+                        <RiUmbrellaLine className="size-3" />{" "}
+                        {forecast.rainProbability}%
+                      </p>
+                    </div>
+                  );
+                })}
+              </Card>
+            </div>
+          </div>
+
           <div className="pb-5">
             <h2 className="text-xl font-bold">Resumen de hoy</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -54,15 +120,6 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
               title="Chiste sobre el clima"
               message={aiAssistantResponse.weatherJoke}
             />
-            {/* <StatCard
-              title="Temperatura máxima"
-              metric={`${weatherDailyData.currentWeather.maxTemperature}ºC`}
-            />
-
-            <StatCard
-              title="Temperatura mínima"
-              metric={`${weatherDailyData.currentWeather.minTemperature}ºC`}
-            /> */}
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
               <StatCard
