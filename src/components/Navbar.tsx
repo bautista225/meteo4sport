@@ -10,11 +10,7 @@ export default function Navbar() {
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse hover:cursor-pointer  hover:text-blue-700 dark:hover:text-blue-500"
         >
-          {/* <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Logo"
-          /> */}
+          <img src="/favicon_2.svg" className="h-10" alt="Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             meteo4sport
           </span>

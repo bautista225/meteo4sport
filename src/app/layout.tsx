@@ -18,6 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.className} antialiased`}>
+      <link rel="icon" href="/favicon_2.svg" sizes="any" />
+      <link
+        rel="icon"
+        href="/icon?<generated>"
+        type="image/<generated>"
+        sizes="<generated>"
+      />
       <body className="dark:bg-gray-950 flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="white">
           <Navbar />
