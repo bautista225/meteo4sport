@@ -42,7 +42,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
         <div className="p-5">
           <div className="pb-5">
             <h2 className="text-xl font-bold mb-3">Predicción a 7 días</h2>
-            <div className="hidden md:flex flex-row mx-auto gap-2 flex-wrap">
+            <div className="hidden md:flex flex-row mx-auto gap-3 flex-wrap">
               {weatherDailyData.forecasts.map((forecast) => {
                 return (
                   <div key={forecast.dateTime}>
