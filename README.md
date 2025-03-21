@@ -3,7 +3,7 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)
 
-![Captura de pantalla 2025-03-21 103939](https://github.com/user-attachments/assets/3a676082-1c3d-4fe7-8b8a-8f48ec063105)
+![Location page](https://github.com/user-attachments/assets/3a676082-1c3d-4fe7-8b8a-8f48ec063105)
 
 ## 🔎 Overview
 Tired of staring at the weather forecast wondering what to wear for your run? Me too! That’s why I built this fun web app using Next.js and Tailwind. It pulls live weather data from AEMET (the Spanish Meteorological Agency) and taps into Cohere AI to give you spot-on outfit suggestions, all while cracking a joke to brighten your day. No more weather-related outfit dilemmas—just good advice and a smile!
@@ -24,9 +24,13 @@ Tired of staring at the weather forecast wondering what to wear for your run? Me
 - Device responsive design
 
 ## 📖 Usage
-Select your location in the main page.
+1. Select your location in the main page.
+2. Visualize the different stats and advices in the location page.
 
-Visualize the different stats and advices in the location page.
+<p align="center">
+   <img alt="Home page" src="https://github.com/user-attachments/assets/693bed5e-0aad-474e-8e1f-9c13685a7f05" height="300"/>
+   <img alt="Location page" src="https://github.com/user-attachments/assets/3a676082-1c3d-4fe7-8b8a-8f48ec063105" height="300"/>
+</p
 
 ## 🖥 Installation in local
 ### Obtaining an AEMET Open Data API developer ID
