@@ -4,6 +4,7 @@ import { Card } from "./Card";
 import Text from "./Text";
 import { ComboChart } from "./ComboChart";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
+import { RiUmbrellaLine } from "@remixicon/react";
 
 type Props = {
   forecasts: HourWeatherForecast[];
@@ -23,7 +24,10 @@ export default function RainChart({ forecasts }: Props) {
 
   return (
     <Card>
-      <Text>Precipitaciones</Text>
+      <div className="flex gap-x-2">
+        <RiUmbrellaLine />
+        <Text>Precipitaciones</Text>
+      </div>
       <ComboChart
         className="mt-6"
         data={data}

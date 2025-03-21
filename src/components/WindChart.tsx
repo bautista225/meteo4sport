@@ -4,19 +4,19 @@ import { Card } from "./Card";
 import { AreaChart } from "./AreaChart";
 import Text from "./Text";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
-import { RiTempHotLine } from "@remixicon/react";
+import { RiWindyLine } from "@remixicon/react";
 
 type Props = {
   forecasts: HourWeatherForecast[];
 };
 
-export default function TempChart({ forecasts }: Props) {
+export default function WindChart({ forecasts }: Props) {
   const data = forecasts
     .map((forecast) => {
       return {
         time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Temperatura (ºC)": Number(forecast.temperature),
-        "Sensación térmica (ºC)": Number(forecast.feelsLike),
+        "Viento (km/h)": Number(forecast.windSpeed),
+        "Racha max. (km/h)": Number(forecast.windGust),
       };
     })
     .slice(0, 24);
@@ -24,19 +24,19 @@ export default function TempChart({ forecasts }: Props) {
   return (
     <Card>
       <div className="flex gap-x-2">
-        <RiTempHotLine />
-        <Text>Temperatura y sensación térmica</Text>
+        <RiWindyLine />
+        <Text>Vientos</Text>
       </div>
       <AreaChart
         className="mt-6"
         data={data}
         index="time"
         showLegend
-        categories={["Sensación térmica (ºC)", "Temperatura (ºC)"]}
+        categories={["Viento (km/h)", "Racha max. (km/h)"]}
         valueFormatter={(number: number) =>
-          `${Intl.NumberFormat().format(number).toString()}°C`
+          `${Intl.NumberFormat().format(number).toString()} km/h`
         }
-        colors={["lime", "amber"]}
+        colors={["blue", "gray"]}
       />
     </Card>
   );

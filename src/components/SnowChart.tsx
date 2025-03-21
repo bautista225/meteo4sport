@@ -4,6 +4,7 @@ import { Card } from "./Card";
 import Text from "./Text";
 import { ComboChart } from "./ComboChart";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
+import { RiSnowflakeLine } from "@remixicon/react";
 
 type Props = {
   forecasts: HourWeatherForecast[];
@@ -20,7 +21,10 @@ export default function SnowChart({ forecasts }: Props) {
 
   return (
     <Card>
-      <Text>Nevadas</Text>
+      <div className="flex gap-x-2">
+        <RiSnowflakeLine />
+        <Text>Nevadas</Text>
+      </div>
       <ComboChart
         className="mt-6"
         data={data}

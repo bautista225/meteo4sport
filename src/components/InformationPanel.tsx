@@ -103,10 +103,10 @@ export default function InformationPanel({ weatherForecast, cityCode }: Props) {
 
       <div className="flex flex-col gap-y-2 pt-5">
         <div className="relative rounded-md border border-gray-200 bg-white px-4 py-3 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-          <span
+          {/* <span
             className="absolute inset-x-0 top-1/2 h-10 w-1 -translate-y-1/2 rounded-r-md bg-blue-500 dark:bg-blue-500"
             aria-hidden="true"
-          />
+          /> */}
           <div className="flex items-center gap-x-2 px-3 py-2">
             <p className="flex items-center justify-between gap-2">
               <SunriseIcon className="text-yellow-500 dark:text-yellow-400" />
@@ -119,12 +119,12 @@ export default function InformationPanel({ weatherForecast, cityCode }: Props) {
         </div>
 
         <div className="relative rounded-md border border-gray-200 bg-white px-4 py-3 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-          <span
+          {/* <span
             className="absolute inset-x-0 top-1/2 h-10 w-1 -translate-y-1/2 rounded-r-md bg-blue-500 dark:bg-blue-500"
             aria-hidden="true"
-          />
+          /> */}
           <div className="flex items-center gap-x-2 px-3 py-2">
-            <p className="flex items-center justify-between gap-2">
+            <p className="flex items-center justify-between gap-x-3">
               <SunsetIcon color="orange" />
             </p>
             <p>Ocaso</p>

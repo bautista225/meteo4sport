@@ -8,14 +8,13 @@ import SnowChart from "@/components/SnowChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import WeatherCard from "@/components/WeatherCard";
+import WindChart from "@/components/WindChart";
 import { getWeatherForecast, getWeatherIconUrl } from "@/services/AemetService";
 import { getWeatherSummary } from "@/services/CohereService";
 import {
   RiArrowDownLine,
   RiArrowUpLine,
-  RiContrastDrop2Line,
   RiUmbrellaLine,
-  RiWaterPercentFill,
 } from "@remixicon/react";
 import Image from "next/image";
 
@@ -162,6 +161,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
             <TempChart forecasts={weatherHourlyData.forecasts} />
             <RainChart forecasts={weatherHourlyData.forecasts} />
             <HumidityChart forecasts={weatherHourlyData.forecasts} />
+            <WindChart forecasts={weatherHourlyData.forecasts} />
             <SnowChart forecasts={weatherHourlyData.forecasts} />
           </div>
         </div>
