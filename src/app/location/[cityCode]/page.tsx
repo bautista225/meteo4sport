@@ -84,7 +84,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
                         <RiArrowDownLine className="size-3" />{" "}
                         {forecast.minTemperature}ºC
                       </p>
-                      <p className="flex items-center font-extralight text-blue-900 text-[0.75rem] col-span-1">
+                      <p className="flex items-center font-extralight text-blue-900 dark:text-teal-600 text-[0.75rem] col-span-1">
                         <RiUmbrellaLine className="size-3" />{" "}
                         {forecast.rainProbability}%
                       </p>

@@ -46,7 +46,7 @@ export default function WeatherCard({
               <RiArrowDownLine className="size-3" />{" "}
               {dayWeatherForecast.minTemperature}ºC
             </p>
-            <p className="flex items-center font-extralight text-blue-900">
+            <p className="flex items-center font-extralight text-blue-900 dark:text-teal-600">
               <RiUmbrellaLine className="size-3" />{" "}
               {dayWeatherForecast.rainProbability}%
             </p>

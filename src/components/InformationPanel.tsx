@@ -90,7 +90,7 @@ export default function InformationPanel({ weatherForecast, cityCode }: Props) {
             <RiArrowDownLine size={20} />{" "}
             {weatherDailyData.currentWeather.minTemperature}ºC
           </p>
-          <p className="flex items-center font-extralight text-blue-900">
+          <p className="flex items-center font-extralight text-blue-900 dark:text-teal-600 ">
             <RiUmbrellaLine size={20} />{" "}
             {weatherHourlyData.currentWeather.rainProbability}%
           </p>
