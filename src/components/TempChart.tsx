@@ -22,8 +22,8 @@ export default function TempChart({ forecasts }: Props) {
     .slice(0, 24);
 
   return (
-    <Card>
-      <div className="flex gap-x-2">
+    <Card className="py-6 px-1 md:px-6">
+      <div className="flex gap-x-2 mx-6 md:mx-0">
         <RiTempHotLine />
         <Text>Temperatura y sensación térmica</Text>
       </div>

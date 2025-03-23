@@ -14,14 +14,14 @@ export default function SnowChart({ forecasts }: Props) {
   const data = forecasts.map((forecast) => {
     return {
       time: forecast.dateTime.split("T")[1].split(":")[0],
-      "Probabilidad de nevada (%)": Number(forecast.snowfallProbability),
+      "Prob. nevada (%)": Number(forecast.snowfallProbability),
       "Cantidad de nieve (mm)": Number(forecast.snowfallProbability),
     };
   });
 
   return (
-    <Card>
-      <div className="flex gap-x-2">
+    <Card className="py-6 px-1 md:px-6">
+      <div className="flex gap-x-2 mx-6 md:mx-0">
         <RiSnowflakeLine />
         <Text>Nevadas</Text>
       </div>
@@ -41,7 +41,7 @@ export default function SnowChart({ forecasts }: Props) {
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}
         lineSeries={{
-          categories: ["Probabilidad de nevada (%)"],
+          categories: ["Prob. nevada (%)"],
           colors: ["violet"],
           maxValue: 100,
           valueFormatter: (number: number) =>

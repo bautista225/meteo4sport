@@ -27,12 +27,12 @@ const getCurrentDateTimeString = () => {
 
 const getAllAvailableHours = (day: Dum): string[] => {
   const allHours = new Set([
-    ...day.estadoCielo.map((e) => e.periodo),
-    ...day.precipitacion.map((p) => p.periodo),
-    ...day.nieve.map((p) => p.periodo),
+    // ...day.estadoCielo.map((e) => e.periodo),
+    // ...day.precipitacion.map((p) => p.periodo),
+    // ...day.nieve.map((p) => p.periodo),
     ...day.temperatura.map((p) => p.periodo),
-    ...day.sensTermica.map((p) => p.periodo),
-    ...day.humedadRelativa.map((p) => p.periodo),
+    // ...day.sensTermica.map((p) => p.periodo),
+    // ...day.humedadRelativa.map((p) => p.periodo),
   ]);
 
   return Array.from(allHours);

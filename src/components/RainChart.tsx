@@ -15,16 +15,16 @@ export default function RainChart({ forecasts }: Props) {
     .map((forecast) => {
       return {
         time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Probabilidad de tormenta (%)": Number(forecast.stormProbability),
-        "Probabilidad de precipitación (%)": Number(forecast.rainProbability),
+        "Prob. tormenta (%)": Number(forecast.stormProbability),
+        "Prob. precipitación (%)": Number(forecast.rainProbability),
         "Cantidad de lluvia (mm)": Number(forecast.rain),
       };
     })
     .slice(0, 24);
 
   return (
-    <Card>
-      <div className="flex gap-x-2">
+    <Card className="py-6 px-1 md:px-6">
+      <div className="flex gap-x-2 mx-6 md:mx-0">
         <RiUmbrellaLine />
         <Text>Precipitaciones</Text>
       </div>
@@ -44,10 +44,7 @@ export default function RainChart({ forecasts }: Props) {
             `${Intl.NumberFormat().format(number).toString()} mm`,
         }}
         lineSeries={{
-          categories: [
-            "Probabilidad de precipitación (%)",
-            "Probabilidad de tormenta (%)",
-          ],
+          categories: ["Prob. precipitación (%)", "Prob. tormenta (%)"],
           colors: ["cyan", "gray"],
           maxValue: 100,
           valueFormatter: (number: number) =>

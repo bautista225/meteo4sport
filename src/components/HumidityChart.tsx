@@ -19,8 +19,8 @@ export default function HumidityChart({ forecasts }: Props) {
   });
 
   return (
-    <Card>
-      <div className="flex gap-x-2">
+    <Card className="py-6 px-1 md:px-6">
+      <div className="flex gap-x-2 mx-6 md:mx-0">
         <RiWaterPercentLine />
         <Text>Humedad relativa</Text>
       </div>

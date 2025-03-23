@@ -51,6 +51,7 @@ export default function CityPicker() {
         options={regionOptions}
         value={region}
         onChange={handleSelectedRegion}
+        placeholder={"Escribe/Selecciona..."}
       />
 
       <div className="text-gray-900 dark:text-gray-50 flex items-center gap-x-2">
@@ -64,6 +65,7 @@ export default function CityPicker() {
         options={getCityOptions(region?.value.code)}
         value={city}
         onChange={handleSelectedCity}
+        placeholder={"Escribe/Selecciona..."}
       />
     </div>
   );
