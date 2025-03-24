@@ -1,6 +1,6 @@
 "use server";
 
-import { getWeatherSummary } from "@/services/CohereService";
+import { getWeatherSummary } from "@/services/GroqService";
 import { WeatherForecast } from "@/lib/weatherDataTypes";
 
 export async function fetchWeatherSummary(weatherForecast: WeatherForecast) {
