@@ -78,6 +78,7 @@ export default function InformationPanel({ weatherForecast, cityCode }: Props) {
           {weatherHourlyData.currentWeather.weatherConditionDescription}
         </p>
       </div>
+
       <div className="flex items-center justify-between gap-x-10">
         <Metric>{weatherHourlyData.currentWeather.temperature}ºC</Metric>
         <div className="flex gap-x-2 items-center">

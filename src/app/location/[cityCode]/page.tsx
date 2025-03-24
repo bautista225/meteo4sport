@@ -36,7 +36,7 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
   const { weatherHourlyData, weatherDailyData } = weatherForecast;
 
   return (
-    <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px]">
+    <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px] w-full">
       <InformationPanel weatherForecast={weatherForecast} cityCode={cityCode} />
 
       <div className="flex-1 lg:pt-10 lg:p-3 2xl:p-10">

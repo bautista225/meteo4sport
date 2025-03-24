@@ -13,29 +13,44 @@ export function getWeatherIconUrl(weatherCode: string) {
   return `${AEMET_WEATHER_ICONS_URL}/${weatherCode}_g.png`;
 }
 
+async function handleAemetResponse(response: Response) {
+  if (!response.ok) {
+    const error = new Error(`HTTP error! status: ${response.status}`);
+    error.name = `AEMET_${response.status}`;
+    throw error;
+  }
+  return response;
+}
+
 export async function getCityHourlyForecast(cityCode: string) {
   try {
-    const preliminaryResponse = await fetch(
-      `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
-      {
-        cache: "no-cache",
-      }
+    const preliminaryResponse = await handleAemetResponse(
+      await fetch(
+        `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/horaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
+        {
+          cache: "no-cache",
+        }
+      )
     );
-
-    console.log({ preliminaryResponse });
 
     const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
 
-    if (!preliminaryData.datos) return null;
+    if (!preliminaryData.datos) {
+      const error = new Error(
+        "No se encontraron datos en la respuesta de AEMET"
+      );
+      error.name = "AEMET_NO_DATA";
+      throw error;
+    }
 
-    const response = await fetch(preliminaryData.datos, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    });
-
-    console.log({ response });
+    const response = await handleAemetResponse(
+      await fetch(preliminaryData.datos, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
+    );
 
     const forecast = (
       await response.json()
@@ -43,45 +58,77 @@ export async function getCityHourlyForecast(cityCode: string) {
 
     return forecast;
   } catch (error) {
-    console.log(error);
-    throw error;
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error("Error desconocido al obtener el pronóstico horario");
   }
 }
 
 export async function getCityDailyForecast(cityCode: string) {
-  const preliminaryResponse = await fetch(
-    `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/diaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
-    {
-      cache: "no-cache",
+  try {
+    const preliminaryResponse = await handleAemetResponse(
+      await fetch(
+        `${AEMET_OPEN_DATA_API_URL}/prediccion/especifica/municipio/diaria/${cityCode}?api_key=${process.env.AEMET_API_KEY}`,
+        {
+          cache: "no-cache",
+        }
+      )
+    );
+
+    const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
+
+    if (!preliminaryData.datos) {
+      const error = new Error(
+        "No se encontraron datos en la respuesta de AEMET"
+      );
+      error.name = "AEMET_NO_DATA";
+      throw error;
     }
-  );
-  const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
 
-  if (!preliminaryData.datos) return null;
+    const response = await handleAemetResponse(
+      await fetch(preliminaryData.datos, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      })
+    );
 
-  const response = await fetch(preliminaryData.datos, {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  });
-  const forecast = (
-    await response.json()
-  )[0] as PrediccionMunicipioProbabilidadPorDias;
+    const forecast = (
+      await response.json()
+    )[0] as PrediccionMunicipioProbabilidadPorDias;
 
-  return forecast;
+    return forecast;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error("Error desconocido al obtener el pronóstico diario");
+  }
 }
 
 export async function getWeatherForecast(
   cityCode: string
 ): Promise<WeatherForecast | null> {
-  const hourlyForecast = await getCityHourlyForecast(cityCode);
-  const dailyForecast = await getCityDailyForecast(cityCode);
+  try {
+    const hourlyForecast = await getCityHourlyForecast(cityCode);
+    const dailyForecast = await getCityDailyForecast(cityCode);
 
-  if (!hourlyForecast || !dailyForecast) return null;
+    if (!hourlyForecast || !dailyForecast) {
+      const error = new Error("No se pudo obtener el pronóstico completo");
+      error.name = "AEMET_INCOMPLETE_DATA";
+      throw error;
+    }
 
-  const weatherHourlyData = transformAemetToWeatherHourlyData(hourlyForecast);
-  const weatherDailyData = transformAemetToWeatherDailyData(dailyForecast);
+    const weatherHourlyData = transformAemetToWeatherHourlyData(hourlyForecast);
+    const weatherDailyData = transformAemetToWeatherDailyData(dailyForecast);
 
-  return { weatherHourlyData, weatherDailyData };
+    return { weatherHourlyData, weatherDailyData };
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error("Error al procesar los datos meteorológicos");
+  }
 }

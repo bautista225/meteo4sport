@@ -71,6 +71,8 @@ const config: Config = {
       },
     },
     animation: {
+      pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      shimmer: "shimmer 2s linear infinite",
       hide: "hide 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       slideDownAndFade: "slideDownAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       slideLeftAndFade: "slideLeftAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1)",
