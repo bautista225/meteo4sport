@@ -6,7 +6,7 @@ import { RiCheckboxCircleFill, RiErrorWarningFill } from "@remixicon/react";
 
 type Props = {
   title: string;
-  message?: string;
+  message?: ReactNode;
   variant?: "default" | "success" | "error" | "warning" | "neutral" | undefined;
   children?: ReactNode;
 };
@@ -23,8 +23,8 @@ export default function CalloutCard({
       icon={variant === "warning" ? RiErrorWarningFill : RiCheckboxCircleFill}
       variant={variant}
     >
-      {message || ""}
-      {children || ""}
+      {message}
+      {children}
     </Callout>
   );
 }

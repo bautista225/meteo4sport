@@ -1,3 +1,6 @@
+import AiAssistantSummary, {
+  AiAssistantSummarySkeleton,
+} from "@/components/AiAssitantSummary";
 import CalloutCard from "@/components/CalloutCard";
 import { Card } from "@/components/Card";
 import { Divider } from "@/components/Divider";
@@ -11,13 +14,13 @@ import WeatherCard from "@/components/WeatherCard";
 import WindChart from "@/components/WindChart";
 import { getCurrentWeatherIndex } from "@/lib/cleanHourlyWeatherData";
 import { getWeatherForecast, getWeatherIconUrl } from "@/services/AemetService";
-import { getWeatherSummary } from "@/services/CohereService";
 import {
   RiArrowDownLine,
   RiArrowUpLine,
   RiUmbrellaLine,
 } from "@remixicon/react";
 import Image from "next/image";
+import { Suspense } from "react";
 
 type Props = {
   params: {
@@ -31,8 +34,6 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
   if (!weatherForecast) return null;
 
   const { weatherHourlyData, weatherDailyData } = weatherForecast;
-
-  const aiAssistantResponse = await getWeatherSummary(weatherForecast);
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row text-gray-900 dark:text-gray-50 mt-[50px]">
@@ -104,23 +105,14 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
             </p>
           </div>
 
-          <div className="mb-6">
-            <CalloutCard
-              title="Información sobre la predicción"
-              message={aiAssistantResponse.summary}
+          <Suspense fallback={<AiAssistantSummarySkeleton className="mb-6" />}>
+            <AiAssistantSummary
+              className="mb-6"
+              weatherForecast={weatherForecast}
             />
-          </div>
+          </Suspense>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-            <CalloutCard
-              title="¿Qué pasa si salgo a correr ahora?"
-              message={aiAssistantResponse.wearForRunning}
-            />
-            <CalloutCard
-              title="Chiste sobre el clima"
-              message={aiAssistantResponse.weatherJoke}
-            />
-
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
               <StatCard
                 title="Índice UV máximo"

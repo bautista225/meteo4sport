@@ -11,6 +11,14 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: ".5" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
+        },
         hide: {
           from: { opacity: "1" },
           to: { opacity: "0" },
