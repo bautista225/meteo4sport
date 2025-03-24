@@ -19,6 +19,16 @@ import {
   RiArrowUpLine,
   RiUmbrellaLine,
 } from "@remixicon/react";
+import {
+  ArrowDown,
+  ArrowDownLeft,
+  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpLeft,
+  ArrowUpRight,
+} from "lucide-react";
 import Image from "next/image";
 import { Suspense } from "react";
 
@@ -26,6 +36,17 @@ type Props = {
   params: {
     cityCode: string;
   };
+};
+
+const windDirectionIcons = {
+  N: <ArrowDown />,
+  S: <ArrowUp />,
+  E: <ArrowLeft />,
+  O: <ArrowRight />,
+  NE: <ArrowDownRight />,
+  NO: <ArrowDownLeft />,
+  SE: <ArrowUpRight />,
+  SO: <ArrowUpLeft />,
 };
 
 export default async function WeatherPage({ params: { cityCode } }: Props) {
@@ -152,6 +173,14 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
               <StatCard
                 title="Dirección del viento"
                 metric={`${weatherHourlyData.currentWeather.windDirection}`}
+                icon={
+                  weatherHourlyData.currentWeather.windDirection
+                    ? windDirectionIcons[
+                        weatherHourlyData.currentWeather
+                          .windDirection as keyof typeof windDirectionIcons
+                      ]
+                    : ""
+                }
               />
             </div>
           </div>
