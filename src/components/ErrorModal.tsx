@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function ErrorModal({ error, reset }: Props) {
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(35);
   const [isCounting, setIsCounting] = useState(true);
 
   useEffect(() => {
