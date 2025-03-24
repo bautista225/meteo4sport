@@ -26,12 +26,12 @@ export default function ErrorModal({ error, reset }: Props) {
 
   const getErrorMessage = () => {
     if (error.message.includes("429") || error.message.includes("500")) {
-      return "El servicio de la AEMET está recibiendo demasiadas solicitudes. Por favor, espera unos segundos y vuelve a intentarlo.";
+      return "El servicio de la AEMET está recibiendo demasiadas solicitudes. Por favor, espera unos instantes y vuelve a intentarlo.";
     }
     if (error.message.includes("404")) {
       return "No se encontró la información meteorológica para esta ciudad.";
     }
-    return "Ha ocurrido un error al cargar la información meteorológica. Por favor, intenta de nuevo en unos instantes.";
+    return "El servicio de la AEMET está recibiendo demasiadas solicitudes. Por favor, espera unos instantes y vuelve a intentarlo.";
   };
 
   return (

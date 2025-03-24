@@ -28,7 +28,14 @@ export function AiAssistantSummarySkeleton({
       <div className="xl:col-span-2">
         <CalloutCard
           title="Información sobre la predicción"
-          message={<SkeletonPlaceholder />}
+          message={
+            <>
+              <p className="mb-2 animate-pulse">
+                Analizando los datos con Cohere AI...
+              </p>
+              <SkeletonPlaceholder />
+            </>
+          }
         />
       </div>
       <CalloutCard
