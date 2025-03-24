@@ -5,21 +5,20 @@ import { AreaChart } from "./AreaChart";
 import Text from "./Text";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 import { RiTempHotLine } from "@remixicon/react";
+import { getChartFormattedDateTime } from "@/lib/cleanHourlyWeatherData";
 
 type Props = {
   forecasts: HourWeatherForecast[];
 };
 
 export default function TempChart({ forecasts }: Props) {
-  const data = forecasts
-    .map((forecast) => {
-      return {
-        time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Temperatura (ºC)": Number(forecast.temperature),
-        "Sensación térmica (ºC)": Number(forecast.feelsLike),
-      };
-    })
-    .slice(0, 24);
+  const data = forecasts.map((forecast) => {
+    return {
+      time: getChartFormattedDateTime(forecast.dateTime),
+      "Temperatura (ºC)": Number(forecast.temperature),
+      "Sensación térmica (ºC)": Number(forecast.feelsLike),
+    };
+  });
 
   return (
     <Card className="py-6 px-1 md:px-6">

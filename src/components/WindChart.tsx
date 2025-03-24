@@ -5,21 +5,20 @@ import { AreaChart } from "./AreaChart";
 import Text from "./Text";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 import { RiWindyLine } from "@remixicon/react";
+import { getChartFormattedDateTime } from "@/lib/cleanHourlyWeatherData";
 
 type Props = {
   forecasts: HourWeatherForecast[];
 };
 
 export default function WindChart({ forecasts }: Props) {
-  const data = forecasts
-    .map((forecast) => {
-      return {
-        time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Viento (km/h)": Number(forecast.windSpeed),
-        "Racha max. (km/h)": Number(forecast.windGust),
-      };
-    })
-    .slice(0, 24);
+  const data = forecasts.map((forecast) => {
+    return {
+      time: getChartFormattedDateTime(forecast.dateTime),
+      "Viento (km/h)": Number(forecast.windSpeed),
+      "Racha max. (km/h)": Number(forecast.windGust),
+    };
+  });
 
   return (
     <Card className="py-6 px-1 md:px-6">

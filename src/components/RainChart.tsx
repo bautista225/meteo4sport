@@ -5,22 +5,21 @@ import Text from "./Text";
 import { ComboChart } from "./ComboChart";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 import { RiUmbrellaLine } from "@remixicon/react";
+import { getChartFormattedDateTime } from "@/lib/cleanHourlyWeatherData";
 
 type Props = {
   forecasts: HourWeatherForecast[];
 };
 
 export default function RainChart({ forecasts }: Props) {
-  const data = forecasts
-    .map((forecast) => {
-      return {
-        time: forecast.dateTime.split("T")[1].split(":")[0],
-        "Prob. tormenta (%)": Number(forecast.stormProbability),
-        "Prob. precipitación (%)": Number(forecast.rainProbability),
-        "Cantidad de lluvia (mm)": Number(forecast.rain),
-      };
-    })
-    .slice(0, 24);
+  const data = forecasts.map((forecast) => {
+    return {
+      time: getChartFormattedDateTime(forecast.dateTime),
+      "Prob. tormenta (%)": Number(forecast.stormProbability),
+      "Prob. precipitación (%)": Number(forecast.rainProbability),
+      "Cantidad de lluvia (mm)": Number(forecast.rain),
+    };
+  });
 
   return (
     <Card className="py-6 px-1 md:px-6">

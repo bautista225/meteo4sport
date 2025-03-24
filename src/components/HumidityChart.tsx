@@ -5,6 +5,7 @@ import { AreaChart } from "./AreaChart";
 import Text from "./Text";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 import { RiWaterPercentLine } from "@remixicon/react";
+import { getChartFormattedDateTime } from "@/lib/cleanHourlyWeatherData";
 
 type Props = {
   forecasts: HourWeatherForecast[];
@@ -13,7 +14,7 @@ type Props = {
 export default function HumidityChart({ forecasts }: Props) {
   const data = forecasts.map((forecast) => {
     return {
-      time: forecast.dateTime.split("T")[1].split(":")[0],
+      time: getChartFormattedDateTime(forecast.dateTime),
       "Humedad relativa (%)": Number(forecast.relativeHumidity),
     };
   });

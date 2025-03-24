@@ -9,6 +9,7 @@ import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import WeatherCard from "@/components/WeatherCard";
 import WindChart from "@/components/WindChart";
+import { getCurrentWeatherIndex } from "@/lib/cleanHourlyWeatherData";
 import { getWeatherForecast, getWeatherIconUrl } from "@/services/AemetService";
 import { getWeatherSummary } from "@/services/CohereService";
 import {
@@ -166,11 +167,46 @@ export default async function WeatherPage({ params: { cityCode } }: Props) {
           <Divider />
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-            <TempChart forecasts={weatherHourlyData.forecasts} />
-            <RainChart forecasts={weatherHourlyData.forecasts} />
-            <HumidityChart forecasts={weatherHourlyData.forecasts} />
-            <WindChart forecasts={weatherHourlyData.forecasts} />
-            <SnowChart forecasts={weatherHourlyData.forecasts} />
+            <TempChart
+              forecasts={weatherHourlyData.forecasts.slice(
+                getCurrentWeatherIndex(
+                  weatherHourlyData.forecasts,
+                  weatherHourlyData.currentWeather.dateTime
+                )
+              )}
+            />
+            <RainChart
+              forecasts={weatherHourlyData.forecasts.slice(
+                getCurrentWeatherIndex(
+                  weatherHourlyData.forecasts,
+                  weatherHourlyData.currentWeather.dateTime
+                )
+              )}
+            />
+            <HumidityChart
+              forecasts={weatherHourlyData.forecasts.slice(
+                getCurrentWeatherIndex(
+                  weatherHourlyData.forecasts,
+                  weatherHourlyData.currentWeather.dateTime
+                )
+              )}
+            />
+            <WindChart
+              forecasts={weatherHourlyData.forecasts.slice(
+                getCurrentWeatherIndex(
+                  weatherHourlyData.forecasts,
+                  weatherHourlyData.currentWeather.dateTime
+                )
+              )}
+            />
+            <SnowChart
+              forecasts={weatherHourlyData.forecasts.slice(
+                getCurrentWeatherIndex(
+                  weatherHourlyData.forecasts,
+                  weatherHourlyData.currentWeather.dateTime
+                )
+              )}
+            />
           </div>
         </div>
       </div>

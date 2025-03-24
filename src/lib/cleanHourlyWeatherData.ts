@@ -149,6 +149,34 @@ const getCurrentWeather = (
   );
 };
 
+export const getCurrentWeatherIndex = (
+  weatherData: HourWeatherForecast[],
+  currentDateTime: string
+): number => {
+  return weatherData.findIndex(
+    (hourWeatherForecast) =>
+      hourWeatherForecast.dateTime.substring(0, 14) ===
+      currentDateTime.substring(0, 14)
+  );
+};
+
+export const getChartFormattedDateTime = (dateTime: string): string => {
+  return (
+    new Date(dateTime)
+      .toLocaleString("es-ES", {
+        weekday: "long",
+      })
+      .substring(0, 3) +
+    ". " +
+    new Date(dateTime).toLocaleString("es-ES", {
+      day: "numeric",
+    }) +
+    ", " +
+    dateTime.split("T")[1].split(":")[0] +
+    "h"
+  );
+};
+
 export const transformAemetToWeatherHourlyData = (
   hourlyForecast: PrediccionMunicipioProbabilidadPorHoras
 ): WeatherHourlyData => {

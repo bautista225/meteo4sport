@@ -5,6 +5,7 @@ import Text from "./Text";
 import { ComboChart } from "./ComboChart";
 import { HourWeatherForecast } from "@/lib/weatherDataTypes";
 import { RiSnowflakeLine } from "@remixicon/react";
+import { getChartFormattedDateTime } from "@/lib/cleanHourlyWeatherData";
 
 type Props = {
   forecasts: HourWeatherForecast[];
@@ -13,7 +14,7 @@ type Props = {
 export default function SnowChart({ forecasts }: Props) {
   const data = forecasts.map((forecast) => {
     return {
-      time: forecast.dateTime.split("T")[1].split(":")[0],
+      time: getChartFormattedDateTime(forecast.dateTime),
       "Prob. nevada (%)": Number(forecast.snowfallProbability),
       "Cantidad de nieve (mm)": Number(forecast.snowfallProbability),
     };

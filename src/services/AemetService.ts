@@ -21,6 +21,9 @@ export async function getCityHourlyForecast(cityCode: string) {
         cache: "no-cache",
       }
     );
+
+    console.log({ preliminaryResponse });
+
     const preliminaryData = (await preliminaryResponse.json()) as AemetResponse;
 
     if (!preliminaryData.datos) return null;
@@ -31,6 +34,9 @@ export async function getCityHourlyForecast(cityCode: string) {
         "Content-Type": "application/json; charset=UTF-8",
       },
     });
+
+    console.log({ response });
+
     const forecast = (
       await response.json()
     )[0] as PrediccionMunicipioProbabilidadPorHoras;
