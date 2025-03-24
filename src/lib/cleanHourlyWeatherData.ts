@@ -168,10 +168,10 @@ export const getChartFormattedDateTime = (dateTime: string): string => {
       })
       .substring(0, 3) +
     ". " +
-    new Date(dateTime).toLocaleString("es-ES", {
-      day: "numeric",
-    }) +
-    ", " +
+    // new Date(dateTime).toLocaleString("es-ES", {
+    //   day: "numeric",
+    // }) +
+    // ", " +
     dateTime.split("T")[1].split(":")[0] +
     "h"
   );
