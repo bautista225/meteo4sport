@@ -63,6 +63,7 @@ export async function getWeatherSummary(
     console.error("Error in getWeatherSummary:", error);
     if (error instanceof Error) {
       console.error("Error details:", error.message);
+
       if (error.message.includes("invalid api token")) {
         console.error("GROQ_API_KEY is invalid or not properly set");
       }
