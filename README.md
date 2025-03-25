@@ -9,6 +9,9 @@
 ## 🔎 Overview
 Tired of staring at the weather forecast wondering what to wear for your run? Me too! That’s why I built this fun web app using Next.js and Tailwind. It pulls live weather data from AEMET (the Spanish Meteorological Agency) and taps into Cohere AI to give you spot-on outfit suggestions, all while cracking a joke to brighten your day. No more weather-related outfit dilemmas—just good advice and a smile!
 
+### Live Demo!
+https://meteo4sport.vercel.app/
+
 ## 🌱 Key features
 - Weather forecast for Spanish regions obtained from the AEMET OpenData API.
   - Hourly forecast
