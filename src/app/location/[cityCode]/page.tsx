@@ -43,10 +43,10 @@ const windDirectionIcons = {
   S: <ArrowUp />,
   E: <ArrowLeft />,
   O: <ArrowRight />,
-  NE: <ArrowDownRight />,
-  NO: <ArrowDownLeft />,
-  SE: <ArrowUpRight />,
-  SO: <ArrowUpLeft />,
+  NE: <ArrowDownLeft />,
+  NO: <ArrowDownRight />,
+  SE: <ArrowUpLeft />,
+  SO: <ArrowUpRight />,
 };
 
 export default async function WeatherPage({ params: { cityCode } }: Props) {
