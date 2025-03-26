@@ -6,10 +6,9 @@ import WeatherPageSkeleton from "@/components/WeatherPageSkeleton";
 
 type Props = {
   error: Error;
-  reset: () => void;
 };
 
-export default function Error({ error, reset }: Props) {
+export default function Error({ error }: Props) {
   useEffect(() => {
     console.error("Error loading weather data:", error);
   }, [error]);
@@ -17,7 +16,7 @@ export default function Error({ error, reset }: Props) {
   return (
     <>
       <WeatherPageSkeleton />
-      <ErrorModal error={error} reset={reset} />
+      <ErrorModal error={error} />
     </>
   );
 }
