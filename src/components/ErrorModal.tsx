@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 
 type Props = {
   error: Error;
-  reset: () => void;
 };
 
-export default function ErrorModal({ error, reset }: Props) {
+export default function ErrorModal({ error }: Props) {
   const [countdown, setCountdown] = useState(35);
   const [isCounting, setIsCounting] = useState(true);
 
@@ -20,9 +19,9 @@ export default function ErrorModal({ error, reset }: Props) {
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
       setIsCounting(false);
-      reset();
+      window.location.reload();
     }
-  }, [countdown, isCounting, reset]);
+  }, [countdown, isCounting]);
 
   const getErrorMessage = () => {
     if (error.message.includes("429") || error.message.includes("500")) {
@@ -52,7 +51,7 @@ export default function ErrorModal({ error, reset }: Props) {
             <Button
               onClick={() => {
                 setIsCounting(false);
-                reset();
+                window.location.reload();
               }}
               disabled={isCounting}
               className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px]"
